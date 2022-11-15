@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/landing-page/LandingPage";
+import { routes } from "./constants/routes";
+import BloodBankDetailsPage from "./pages/BloodBankDetailsPage/BloodBankDetailsPage";
 import "./App.css";
 import LoginPage from "./pages/login-page/LoginPage";
 import NotFoundPage from "./pages/error/NotFoundPage";
@@ -21,6 +23,10 @@ function App() {
         <Route
           path="/error/internal-server-error"
           element={<InternalServerErrorPage />}
+        />
+        <Route
+          path={routes.BLOOD_BANK_DETAILS}
+          element={<BloodBankDetailsPage />}
         />
       </Routes>
     </div>

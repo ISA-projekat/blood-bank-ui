@@ -1,0 +1,39 @@
+.blood-bank-details-wrapper {
+  width: 50%;
+  height: 34%;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.blood-bank-details-wrapper form {
+  margin-top: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.blood-bank-details-wrapper label {
+  width: 40%;
+}
+
+.blood-bank-details-wrapper input {
+  width: 50%;
+  height: 22px;
+}
+
+.blood-bank-details-wrapper ul {
+  width: 80%;
+  padding-left: 18px;
+  margin-top: 4px;
+}
+
+.blood-bank-details-wrapper .button-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.blood-bank-details-wrapper .button-div button {
+  width: 80px;
+}
