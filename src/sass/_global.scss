@@ -3,3 +3,61 @@
     height: 100vh;
     padding: 3%;
 }
+
+.pages-wrapper {
+    background-image: $background-primary;
+    height: 86%;
+    padding: 4% 6%;
+}
+
+.error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: $navlink-active;
+    background-color: $color-white;
+    border-radius: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5rem 10rem;
+    width: 50%;
+}
+
+.error-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+}
+
+.orange-button {
+    
+    margin-top: 4rem;
+    
+    & {
+        padding: 1.3rem 2rem;
+        font-size: 1.8rem;
+        border-radius: 10px;
+        border: none;
+        color: $color-white;
+        background: $background-button;
+        transition: .3s;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        .navlink {
+            text-decoration: none;
+            color: $color-white;
+        }
+    }
+    &:hover {
+        transform: scale(1.05);
+        transition: .3s all;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    &:active {
+        transform: scale(0.9);
+        transition: .2s all;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+        
+}
