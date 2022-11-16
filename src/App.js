@@ -4,6 +4,7 @@ import { routes } from "./constants/routes";
 import BloodBankDetailsPage from "./pages/BloodBankDetailsPage/BloodBankDetailsPage";
 import "./App.css";
 import LoginPage from "./pages/login-page/LoginPage";
+import ProfilePage from "./pages/profile-page/ProfilePage";
 import NotFoundPage from "./pages/error/NotFoundPage";
 import BadRequestPage from "./pages/error/BadRequestPage";
 import UnauthorizedPage from "./pages/error/UnauthorizedPage";
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/user/:id" element={<ProfilePage />} />
         <Route path="/error/not-found" element={<NotFoundPage />} />
         <Route path="/error/bad-request" element={<BadRequestPage />} />
         <Route path="/error/unauthorized" element={<UnauthorizedPage />} />
