@@ -11,6 +11,8 @@ export default function ProfilePage() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [occupation, setOccupation] = useState("");
     const [email, setEmail] = useState("");
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
     const [user, setUser] = useState({});
     
     const [isEditing, setIsEditing] = useState(false);
@@ -33,10 +35,14 @@ export default function ProfilePage() {
     }
 
     const onSubmitEdit = (event) => {
+        if (user.bloodBankId && oldPassword !== user.password && ( oldPassword || newPassword )) {
+            alert("Password error");
+            return;
+        }
         let changedUser = {
             "id": user.id,
             "email": email,
-            "password": user.password,
+            "password": newPassword || user.password,
             "firstName": firstName,
             "lastName": lastName,
             "jmbg": user.jmbg,
@@ -93,6 +99,16 @@ export default function ProfilePage() {
                     Occupation:
                     <input type={"text"} value={occupation} onChange={(e) => {setOccupation(e.target.value)}} disabled={!isEditing} />
                 </label><br />
+
+                {user && user.bloodBankId && (<><label>
+                    Old password:
+                    <input type={"password"} onChange={(e) => {setOldPassword(e.target.value)}} disabled={!isEditing} />
+                </label><br /></>)}
+
+                {user && user.bloodBankId && (<><label>
+                    New password:
+                    <input type={"password"} onChange={(e) => {setNewPassword(e.target.value)}} disabled={!isEditing} />
+                </label><br /></>)}
 
                 <input type={"submit"} value={"Submit"} disabled={!isEditing} />
             </form>
