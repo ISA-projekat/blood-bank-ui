@@ -8,3 +8,7 @@ export async function getAllUsers() {
 export async function getById(id) {
   return await request("/user/" + id);
 }
+
+export async function registerUser(dto) {
+  return await request("/user/register", dto, HttpMethod.POST);
+}

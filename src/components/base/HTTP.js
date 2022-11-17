@@ -33,11 +33,11 @@ Axios.getInstance().interceptors.response.use(
   },
   async (error) => {
     const {
-      response: { status },
+      response: { status, data },
     } = error;
 
     if (status === 404) {
-      history.push("/error/not-found");
+      history.push("/error/not-found", { message: data.message });
     } else if (status === 500) {
       history.push("/error/internal-server-error");
     } else if (status === 401) {
@@ -45,7 +45,7 @@ Axios.getInstance().interceptors.response.use(
     } else if (status === 403) {
       history.push("/error/unauthorized");
     } else if (status === 400) {
-      history.push("error/bad-request");
+      history.push("error/bad-request", { message: data.message });
     }
 
     return error;

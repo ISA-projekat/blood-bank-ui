@@ -22,7 +22,7 @@ export default function LandingPage() {
           </div>
           <div className="landing-main__header-button">
             <button className="landing-main__header-button-style">
-              <NavLink to='/login' className={'navlink'}>I want to donate</NavLink>
+              <NavLink to='/register' className={'navlink'}>I want to donate</NavLink>
             </button>
           </div>
         </div>

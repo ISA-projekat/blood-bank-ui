@@ -10,6 +10,8 @@ import BadRequestPage from "./pages/error/BadRequestPage";
 import UnauthorizedPage from "./pages/error/UnauthorizedPage";
 import ForbiddenPage from "./pages/error/ForbiddenPage";
 import InternalServerErrorPage from "./pages/error/InternalServerErrorPage";
+import RegistrationPage from "./pages/registration/RegistrationPage";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
         <Route path="/user/:id" element={<ProfilePage />} />
         <Route path="/error/not-found" element={<NotFoundPage />} />
         <Route path="/error/bad-request" element={<BadRequestPage />} />
@@ -31,6 +34,7 @@ function App() {
           element={<BloodBankDetailsPage />}
         />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
