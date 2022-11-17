@@ -12,6 +12,7 @@ import ForbiddenPage from "./pages/error/ForbiddenPage";
 import InternalServerErrorPage from "./pages/error/InternalServerErrorPage";
 import RegistrationPage from "./pages/registration/RegistrationPage";
 import { ToastContainer, toast } from "react-toastify";
+import BloodBankComponent from "./components/bloodBankComponent";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           path={routes.BLOOD_BANK_DETAILS}
           element={<BloodBankDetailsPage />}
         />
+        <Route path="/blood-banks" element={<BloodBankComponent />} />
       </Routes>
       <ToastContainer />
     </div>
