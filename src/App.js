@@ -13,6 +13,7 @@ import InternalServerErrorPage from "./pages/error/InternalServerErrorPage";
 import RegistrationPage from "./pages/registration/RegistrationPage";
 import { ToastContainer, toast } from "react-toastify";
 import BloodBankComponent from "./components/bloodBankComponent";
+import BloodBanksPage from "./pages/BloodBanksPage/BloodBanksPage";
 
 function App() {
   return (
@@ -34,9 +35,8 @@ function App() {
           path={routes.BLOOD_BANK_DETAILS}
           element={<BloodBankDetailsPage />}
         />
-        <Route path="/blood-banks" element={<BloodBankComponent />} />
+        <Route path="/blood-banks" element={<BloodBanksPage />} />
       </Routes>
-      <ToastContainer />
     </div>
   );
 }

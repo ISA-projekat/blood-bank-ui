@@ -1,0 +1,49 @@
+.blood-banks {
+    height: 90%;
+    background-color: #fff;
+    border-radius: .5rem;
+    width: 80%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 3rem 10rem;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3rem;
+    }
+
+    &__filter {
+        margin-bottom: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-filter {
+            display: flex;
+            align-items: center;
+
+            .search-submit-container {
+                margin-left: 1rem;
+            }
+
+        }
+
+        .form-align {
+            display: flex;
+            align-items: center;
+
+            .search-form-item {
+                margin-right: 2rem;
+            }
+
+            .search-submit-container { 
+                color: white !important;
+            }
+        }
+    }
+
+    &__table {
+
+    }
+}
