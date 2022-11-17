@@ -1,3 +1,4 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import axios from "axios";
 import HttpMethod from "../../constants/HttpMethod";
 import history from "./../../history";
@@ -17,8 +18,8 @@ const Axios = (function () {
         instance = createInstance();
       }
 
-      console.log("Evo je instanca" + instance.baseURL);
       instance.defaults.headers.common["Authorization"] = getToken();
+      instance.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
       instance.all = axios.all;
 
       return instance;
@@ -86,6 +87,9 @@ export async function connect(url, data, method, options) {
 // Ovo pravi query parametre jedan za drugim
 export function makeParametersList(parameters) {
   let parametersList = "?";
+
+  console.log("PARAMETERS");
+  console.log(parameters);
 
   Object.keys(parameters).map(
     (key, index) =>
