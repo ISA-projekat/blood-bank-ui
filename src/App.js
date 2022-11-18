@@ -10,10 +10,14 @@ import BadRequestPage from "./pages/error/BadRequestPage";
 import UnauthorizedPage from "./pages/error/UnauthorizedPage";
 import ForbiddenPage from "./pages/error/ForbiddenPage";
 import InternalServerErrorPage from "./pages/error/InternalServerErrorPage";
+import AdminMainPage from "./pages/AdminPage/AdminMainPage";
+import AddAdminToBloodBank from "./Admin/AddAdminToBloodBank";
+import RegisterAdministrator from "./Admin/RegisterAdministrator";
 import RegistrationPage from "./pages/registration/RegistrationPage";
 import { ToastContainer, toast } from "react-toastify";
 import BloodBankComponent from "./components/bloodBankComponent";
 import BloodBanksPage from "./pages/BloodBanksPage/BloodBanksPage";
+import AdminUsersView from "./Admin/AdminUsersView/AdminUsersView";
 
 function App() {
   return (
@@ -27,6 +31,10 @@ function App() {
         <Route path="/error/bad-request" element={<BadRequestPage />} />
         <Route path="/error/unauthorized" element={<UnauthorizedPage />} />
         <Route path="/error/forbidden" element={<ForbiddenPage />} />
+        <Route path="/admin" element={<AdminMainPage/>} />
+        <Route path="/admin/addToBloodBank" element={<AddAdminToBloodBank/>} />
+        <Route path="/admin/register" element={<RegisterAdministrator/>} />
+        <Route path="/admin/users" element={<AdminUsersView/>} />
         <Route
           path="/error/internal-server-error"
           element={<InternalServerErrorPage />}

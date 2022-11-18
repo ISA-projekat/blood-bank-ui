@@ -1,0 +1,19 @@
+.outterDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 100px;
+}
+.input3{
+    width: 50px;
+}
+.bank{
+    display: grid;
+    grid-template-rows: auto auto;
+    row-gap: 10px;
+}
+.register{
+   float: right;
+   margin-right: 20px;
+}
