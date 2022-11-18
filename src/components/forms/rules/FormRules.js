@@ -30,6 +30,10 @@ const FormRules = {
   },
   jmbg: {
     required: { value: true, message: "Jmbg is required" },
+    pattern: {
+      value: ValidationPatterns.NUMERIC,
+      message: "JMBG must contain only numbers",
+    },
     minLength: {
       value: 13,
       message: "JMBG must be 13 characters long",
@@ -37,10 +41,6 @@ const FormRules = {
     maxLength: {
       value: 13,
       message: "JMBG must be 13 characters long",
-    },
-    pattern: {
-      value: ValidationPatterns.NUMERIC,
-      message: "JMBG must contain only numbers",
     },
   },
 };

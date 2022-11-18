@@ -14,6 +14,7 @@ import RegistrationPage from "./pages/registration/RegistrationPage";
 import { ToastContainer, toast } from "react-toastify";
 import BloodBankComponent from "./components/bloodBankComponent";
 import BloodBanksPage from "./pages/BloodBanksPage/BloodBanksPage";
+import SurveyPage from "./pages/survey-page/SurveyPage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           element={<BloodBankDetailsPage />}
         />
         <Route path="/blood-banks" element={<BloodBanksPage />} />
+        <Route path="/survey" element={<SurveyPage />} />
       </Routes>
     </div>
   );

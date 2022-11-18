@@ -45,14 +45,22 @@ const BloodBankTable = ({ rows }) => {
 
     return (
       <TableContainer className="fs">
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 800 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
-              <TableCell align="right">Street</TableCell>
-              <TableCell align="right">City</TableCell>
-              <TableCell align="right">Country</TableCell>
-              <TableCell align="right">Rating</TableCell>
+              <TableCell align="right">
+                <b>Street</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>City</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>Country</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>Rating</b>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>{renderTableData(data)}</TableBody>
