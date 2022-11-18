@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 const BloodBanksPage = () => {
 
     const [bloodBanks, setBloodBanks] = useState([]);
+    const [order, setOrder] = useState("asc");
 
     useEffect(() => {
         fetchData();
@@ -57,6 +58,46 @@ const BloodBanksPage = () => {
 
     const handleReset = () => {
         fetchData();
+    }
+
+    const onSortByName = () => {
+        const table = [...bloodBanks].sort((a, b) =>
+            a.name.toString().localeCompare(b.name.toString()) * (order === "asc" ? 1 : -1)
+        );
+
+        const value = order === "asc" ? "desc" : "asc"
+        setOrder(value);
+        setBloodBanks(table);
+    }
+
+    const onSortByCity = () => {
+        const table = [...bloodBanks].sort((a, b) =>
+            a.address.city.toString().localeCompare(b.address.city.toString()) * (order === "asc" ? 1 : -1)
+        );
+
+        const value = order === "asc" ? "desc" : "asc"
+        setOrder(value);
+        setBloodBanks(table);
+    }
+
+    const onSortByStreet = () => {
+        const table = [...bloodBanks].sort((a, b) =>
+            a.address.street.toString().localeCompare(b.address.street.toString()) * (order === "asc" ? 1 : -1)
+        );
+
+        const value = order === "asc" ? "desc" : "asc"
+        setOrder(value);
+        setBloodBanks(table);
+    }
+
+    const onSortByGrade = () => {
+        const table = [...bloodBanks].sort((a, b) =>
+            a.rating.toString().localeCompare(b.rating.toString(), { numeric: true}) * (order === "asc" ? 1 : -1)
+        );
+
+        const value = order === "asc" ? "desc" : "asc"
+        setOrder(value);
+        setBloodBanks(table);
     }
 
     return (
@@ -116,7 +157,7 @@ const BloodBanksPage = () => {
                     </div>
                 </div>
                 <div className='blood-banks__table'>
-                    <BloodBankTable rows = {bloodBanks}/>
+                    <BloodBankTable rows = {bloodBanks} sortByName={onSortByName} sortByCity={onSortByCity} sortByStreet={onSortByStreet} sortByGrade={onSortByGrade}/>
                 </div>
             </div>
         </div>

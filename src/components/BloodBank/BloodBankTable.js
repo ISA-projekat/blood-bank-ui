@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,7 +6,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-const BloodBankTable = ({ rows }) => {
+const BloodBankTable = ({
+  rows,
+  sortByName,
+  sortByCity,
+  sortByStreet,
+  sortByGrade,
+  order,
+}) => {
   const renderTableData = (data) => {
     let result = [];
 
@@ -48,17 +55,19 @@ const BloodBankTable = ({ rows }) => {
         <Table sx={{ minWidth: 800 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">
+              <TableCell onClick={sortByName}>
+                <b>Name</b>
+              </TableCell>
+              <TableCell align="right" onClick={sortByStreet}>
                 <b>Street</b>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="right" onClick={sortByCity}>
                 <b>City</b>
               </TableCell>
               <TableCell align="right">
                 <b>Country</b>
               </TableCell>
-              <TableCell align="right">
+              <TableCell align="right" onClick={sortByGrade}>
                 <b>Rating</b>
               </TableCell>
             </TableRow>
