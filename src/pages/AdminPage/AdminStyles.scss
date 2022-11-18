@@ -1,0 +1,62 @@
+.main{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: auto auto auto;
+    row-gap: 20px;
+    column-gap: 90px;
+    text-align: center;
+    width: 50%;
+    height: 50%;
+    margin-right: 300px;
+}
+
+.outterMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+}
+
+.label1{
+    font-size: 24px;
+}
+
+.single{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.buttonOutter{
+   
+    grid-column-start: 2;
+    grid-column-end: 4;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.input1{
+    height: 25px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 8px 10px #888888;
+}
+
+.button1{
+    border-radius: 25px;
+    height: 40px;
+    width: 160px;
+   
+}
+
+.button1:hover{
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.assignAdminButton{
+    position: absolute;
+        top: 10px;
+        right: 10px;
+}

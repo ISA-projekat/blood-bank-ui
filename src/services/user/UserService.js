@@ -8,3 +8,5 @@ export async function getAllUsers() {
 export async function getById(id) {
   return await request("/user/" + id);
 }
+
+

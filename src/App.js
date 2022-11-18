@@ -10,6 +10,9 @@ import BadRequestPage from "./pages/error/BadRequestPage";
 import UnauthorizedPage from "./pages/error/UnauthorizedPage";
 import ForbiddenPage from "./pages/error/ForbiddenPage";
 import InternalServerErrorPage from "./pages/error/InternalServerErrorPage";
+import AdminMainPage from "./pages/AdminPage/AdminMainPage";
+import AddAdminToBloodBank from "./Admin/AddAdminToBloodBank";
+import RegisterAdministrator from "./Admin/RegisterAdministrator";
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
         <Route path="/error/bad-request" element={<BadRequestPage />} />
         <Route path="/error/unauthorized" element={<UnauthorizedPage />} />
         <Route path="/error/forbidden" element={<ForbiddenPage />} />
+        <Route path="/admin" element={<AdminMainPage/>} />
+        <Route path="/admin/addToBloodBank" element={<AddAdminToBloodBank/>} />
+        <Route path="/admin/register" element={<RegisterAdministrator/>} />
         <Route
           path="/error/internal-server-error"
           element={<InternalServerErrorPage />}
