@@ -4,9 +4,11 @@ import { FormProvider, useForm } from "react-hook-form";
 import FormRules from "./rules/FormRules";
 import { registerUser } from "../../services/user/UserService";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const RegistrationForm = () => {
   const form = useForm();
+  const navigate = useNavigate();
 
   const {
     data,
@@ -27,9 +29,8 @@ const RegistrationForm = () => {
       return;
     }
 
-    toast.success("Welcome to our family", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
+    alert("Welcome to our family");
+    navigate("/survey");
   }
 
   const confirmPasswordRule = {
