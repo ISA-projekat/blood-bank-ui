@@ -17,6 +17,7 @@ import RegistrationPage from "./pages/registration/RegistrationPage";
 import { ToastContainer, toast } from "react-toastify";
 import BloodBankComponent from "./components/bloodBankComponent";
 import BloodBanksPage from "./pages/BloodBanksPage/BloodBanksPage";
+import AdminUsersView from "./Admin/AdminUsersView/AdminUsersView";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/admin" element={<AdminMainPage/>} />
         <Route path="/admin/addToBloodBank" element={<AddAdminToBloodBank/>} />
         <Route path="/admin/register" element={<RegisterAdministrator/>} />
+        <Route path="/admin/users" element={<AdminUsersView/>} />
         <Route
           path="/error/internal-server-error"
           element={<InternalServerErrorPage />}
