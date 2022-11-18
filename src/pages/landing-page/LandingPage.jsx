@@ -21,9 +21,11 @@ export default function LandingPage() {
             <p>Save a life.</p>
           </div>
           <div className="landing-main__header-button">
+            <NavLink to='/register' className={'navlink'}>
             <button className="landing-main__header-button-style">
-              <NavLink to='/register' className={'navlink'}>I want to donate</NavLink>
+              I want to donate
             </button>
+            </NavLink>
           </div>
         </div>
         <div className="landing-main__image"></div>
