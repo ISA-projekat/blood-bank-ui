@@ -13,6 +13,10 @@ import InternalServerErrorPage from "./pages/error/InternalServerErrorPage";
 import AdminMainPage from "./pages/AdminPage/AdminMainPage";
 import AddAdminToBloodBank from "./Admin/AddAdminToBloodBank";
 import RegisterAdministrator from "./Admin/RegisterAdministrator";
+import RegistrationPage from "./pages/registration/RegistrationPage";
+import { ToastContainer, toast } from "react-toastify";
+import BloodBankComponent from "./components/bloodBankComponent";
+import BloodBanksPage from "./pages/BloodBanksPage/BloodBanksPage";
 
 function App() {
   return (
@@ -20,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
         <Route path="/user/:id" element={<ProfilePage />} />
         <Route path="/error/not-found" element={<NotFoundPage />} />
         <Route path="/error/bad-request" element={<BadRequestPage />} />
@@ -36,6 +41,7 @@ function App() {
           path={routes.BLOOD_BANK_DETAILS}
           element={<BloodBankDetailsPage />}
         />
+        <Route path="/blood-banks" element={<BloodBanksPage />} />
       </Routes>
     </div>
   );

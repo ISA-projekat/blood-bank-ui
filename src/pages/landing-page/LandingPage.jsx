@@ -6,7 +6,7 @@ export default function LandingPage() {
   return (
     <div className="wrapper">
       <div className="landing-navbar">
-        <div className="landing-navbar__item">Find a donor center</div>
+        <div className="landing-navbar__item"><NavLink to='/blood-banks' className={'navlink'}>Find a donor center</NavLink></div>
         <div className="landing-navbar__item"><NavLink to='/login' className={'navlink'}>Already a donor?</NavLink></div>
       </div>
       <div className="landing-main">
@@ -22,7 +22,7 @@ export default function LandingPage() {
           </div>
           <div className="landing-main__header-button">
             <button className="landing-main__header-button-style">
-              <NavLink to='/login' className={'navlink'}>I want to donate</NavLink>
+              <NavLink to='/register' className={'navlink'}>I want to donate</NavLink>
             </button>
           </div>
         </div>
