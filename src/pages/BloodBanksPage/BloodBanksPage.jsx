@@ -46,9 +46,15 @@ const BloodBanksPage = () => {
 
     const handleFilter = (rating) => {
         let result = []
+        if (rating.start_time === "") { rating.start_time = 0; }
+        if (rating.end_time === "") { rating.end_time = 24; }
+        if (rating.rating === "") {rating.rating = 0; }
 
         bloodBanks.forEach((bb) => {
-            if (bb.rating >= rating.rating) {
+            var start_hours = Number(bb.startTime.split(":")[0]);
+            var end_hours = Number(bb.endTime.split(":")[0]);
+            console.log(bb);
+            if ((bb.rating >= rating.rating) && (start_hours >= rating.start_time) && (end_hours <= rating.end_time)) {
                 result.push(bb);
         }
         });
@@ -139,6 +145,22 @@ const BloodBanksPage = () => {
                                 <TextFieldControl
                                 label={"Rating"}
                                 name={"rating"}
+                                control={control}
+                                type={'number'}
+                                defaultValue=""/>
+                        </div>
+                        <div className='search-form-item'>
+                                <TextFieldControl
+                                label={"Opening Hour"}
+                                name={"start_time"}
+                                control={control}
+                                type={'number'}
+                                defaultValue=""/>
+                        </div>
+                        <div className='search-form-item'>
+                                <TextFieldControl
+                                label={"Closing Hour"}
+                                name={"end_time"}
                                 control={control}
                                 type={'number'}
                                 defaultValue=""/>
