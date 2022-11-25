@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import BloodBankTable from '../../components/BloodBank/BloodBankTable';
 import './BloodBanksPages.scss'
-import { getBloodBanks, search } from '../../services/blood-bank/BloodBankService';
+import { getBloodBanks, getPage, search } from '../../services/blood-bank/BloodBankService';
 import { FormProvider, useForm } from 'react-hook-form';
 import TextFieldControl from '../../components/forms/controls/TextFieldControl';
 import FormRules from '../../components/forms/rules/FormRules';
@@ -11,6 +11,9 @@ const BloodBanksPage = () => {
 
     const [bloodBanks, setBloodBanks] = useState([]);
     const [order, setOrder] = useState("asc");
+    const [page, setPage] = useState({})
+    const [sortActive, setSortActive] = useState(false)
+    const [sortState, setSortState] = useState("")
 
     useEffect(() => {
         fetchData();
@@ -18,9 +21,10 @@ const BloodBanksPage = () => {
 
     const fetchData = async () => {
             
-        const response = await getBloodBanks();
+        const response = await getPage(0,2);
         
-        setBloodBanks(response.data);
+        setPage(response.data)
+        setBloodBanks(response.data.content);
     };
 
     const form = useForm();
@@ -34,8 +38,17 @@ const BloodBanksPage = () => {
         formState: { errors },
     } = form;
 
+    const onPageChange = async (event, newPage) => {
+        const sortParam = sortActive ? sortState : ""
+        const response = await getPage(newPage, 2, sortParam)
+        if (!response || !response.ok){
+            alert('There is an error')
+        }
+        setPage(response.data)
+        setBloodBanks(response.data.content);
+    }
+
     const onSearch = async (dto) => {
-        console.log(dto)
         const response = await search(dto);
         if (!response || !response.ok){
             alert('There is an error')
@@ -60,44 +73,51 @@ const BloodBanksPage = () => {
         fetchData();
     }
 
-    const onSortByName = () => {
-        const table = [...bloodBanks].sort((a, b) =>
-            a.name.toString().localeCompare(b.name.toString()) * (order === "asc" ? 1 : -1)
-        );
+    const onSortByName = async () => {
+        const sort = setupSort("name")
+        const response = await getPage(0, 2, sort)
+
 
         const value = order === "asc" ? "desc" : "asc"
         setOrder(value);
-        setBloodBanks(table);
+        setBloodBanks(response.data.content);
     }
 
-    const onSortByCity = () => {
-        const table = [...bloodBanks].sort((a, b) =>
-            a.address.city.toString().localeCompare(b.address.city.toString()) * (order === "asc" ? 1 : -1)
-        );
+    const onSortByCity = async () => {
+        const sort = setupSort("address.city")
+        const response = await getPage(0, 2, sort)
 
         const value = order === "asc" ? "desc" : "asc"
         setOrder(value);
-        setBloodBanks(table);
+        setBloodBanks(response.data.content);
     }
 
-    const onSortByStreet = () => {
-        const table = [...bloodBanks].sort((a, b) =>
-            a.address.street.toString().localeCompare(b.address.street.toString()) * (order === "asc" ? 1 : -1)
-        );
+    const onSortByStreet = async () => {
+        const sort = setupSort("address.street")
+        const response = await getPage(0, 2, sort)
 
         const value = order === "asc" ? "desc" : "asc"
         setOrder(value);
-        setBloodBanks(table);
+        setBloodBanks(response.data.content);
     }
 
-    const onSortByGrade = () => {
-        const table = [...bloodBanks].sort((a, b) =>
-            a.rating.toString().localeCompare(b.rating.toString(), { numeric: true}) * (order === "asc" ? 1 : -1)
-        );
+    const onSortByGrade = async () => {
+        
+        const sort = setupSort("rating")
+        const response = await getPage(0, 2, sort)
 
         const value = order === "asc" ? "desc" : "asc"
         setOrder(value);
-        setBloodBanks(table);
+        setBloodBanks(response.data.content);
+    }
+
+    const setupSort = (sortParam) => {
+        let sort = sortParam + ","
+        sort += order === "asc" ? "desc" : "asc"
+        setSortState(sort)
+        setSortActive(true);
+
+        return sort;
     }
 
     return (
@@ -157,7 +177,7 @@ const BloodBanksPage = () => {
                     </div>
                 </div>
                 <div className='blood-banks__table'>
-                    <BloodBankTable rows = {bloodBanks} sortByName={onSortByName} sortByCity={onSortByCity} sortByStreet={onSortByStreet} sortByGrade={onSortByGrade}/>
+                    <BloodBankTable rows = {bloodBanks} sortByName={onSortByName} sortByCity={onSortByCity} sortByStreet={onSortByStreet} sortByGrade={onSortByGrade} onPageChange={onPageChange} page={page}/>
                 </div>
             </div>
         </div>

@@ -8,3 +8,12 @@ export async function getBloodBanks() {
 export async function search(dto) {
   return await request("/bloodbank/search" + makeParametersList(dto));
 }
+
+export async function getPage(page, size = 2, sort = "") {
+  let dto = {
+    page: page,
+    size: size,
+    sort: sort,
+  };
+  return await request("/bloodbank/page" + makeParametersList(dto));
+}
