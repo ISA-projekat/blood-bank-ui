@@ -5,6 +5,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { TablePagination } from "@mui/material";
 
 const BloodBankTable = ({
   rows,
@@ -12,6 +13,8 @@ const BloodBankTable = ({
   sortByCity,
   sortByStreet,
   sortByGrade,
+  onPageChange,
+  page,
   order,
 }) => {
   const renderTableData = (data) => {
@@ -73,10 +76,19 @@ const BloodBankTable = ({
             </TableRow>
           </TableHead>
           <TableBody>{renderTableData(data)}</TableBody>
+          <TablePagination
+            sx={{ minWidth: "100%" }}
+            onPageChange={onPageChange}
+            count={page.totalElements}
+            rowsPerPage={page.size}
+            page={page.number}
+          />
         </Table>
       </TableContainer>
     );
   };
+
+  const handlePageChangeSort = (page, sort) => {};
 
   return <div>{renderTable(rows)}</div>;
 };
