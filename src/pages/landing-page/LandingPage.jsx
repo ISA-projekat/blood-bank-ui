@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../store/bloodbank/login/login-context";
 import "./LandingPage.scss";
 
 export default function LandingPage() {
+
+  const context = useContext(AuthContext)
+
+  const handleLogout = () => {
+    context.logout();
+  }
+
   return (
     <div className="wrapper">
       <div className="landing-navbar">
         <div className="landing-navbar__item"><NavLink to='/blood-banks' className={'navlink'}>Find a donor center</NavLink></div>
-        <div className="landing-navbar__item"><NavLink to='/login' className={'navlink'}>Already a donor?</NavLink></div>
+        {!context.isLoggedIn && <div className="landing-navbar__item"><NavLink to='/login' className={'navlink'}>Already a donor?</NavLink></div>}
+        {context.isLoggedIn && <div className="landing-navbar__item"><button className="orange-button" style={{marginTop: "0rem", padding: "0.5rem 1rem"}} onClick={handleLogout}>Logout</button></div>}
       </div>
       <div className="landing-main">
         <div className="landing-main__header">
@@ -20,13 +29,13 @@ export default function LandingPage() {
             <p>Schedule your donation.</p>
             <p>Save a life.</p>
           </div>
-          <div className="landing-main__header-button">
+          {!context.isLoggedIn && <div className="landing-main__header-button">
             <NavLink to='/register' className={'navlink'}>
             <button className="landing-main__header-button-style">
               I want to donate
             </button>
             </NavLink>
-          </div>
+          </div>}
         </div>
         <div className="landing-main__image"></div>
       </div>

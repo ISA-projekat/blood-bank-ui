@@ -30,7 +30,7 @@ const RegistrationForm = () => {
     }
 
     alert("Welcome to our family");
-    navigate("/survey");
+    navigate("/registration-success");
   }
 
   const confirmPasswordRule = {
