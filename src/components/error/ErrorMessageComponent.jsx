@@ -10,7 +10,7 @@ const ErrorMessageComponent = (props) => {
             <h1>{props.message}</h1>
             <h3>{props.status}</h3>
             <Link to="/" className='navlink'><button className='orange-button'>
-                Let me back
+                Back to home page
             </button>
             </Link>
         </div>

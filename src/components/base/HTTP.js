@@ -17,9 +17,10 @@ const Axios = (function () {
       if (!instance) {
         instance = createInstance();
       }
-
-      instance.defaults.headers.common["Authorization"] = getToken();
-      instance.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+      console.log(getToken());
+      if (getToken() !== "Bearer null") {
+        instance.defaults.headers.common["Authorization"] = getToken();
+      }
       instance.all = axios.all;
 
       return instance;
@@ -41,9 +42,9 @@ Axios.getInstance().interceptors.response.use(
       history.push("/error/not-found", { message: data.message });
     } else if (status === 500) {
       history.push("/error/internal-server-error");
-    } else if (status === 401) {
-      history.push("/error/forbidden");
     } else if (status === 403) {
+      history.push("/error/forbidden");
+    } else if (status === 401) {
       history.push("/error/unauthorized");
     } else if (status === 400) {
       history.push("error/bad-request", { message: data.message });
@@ -101,7 +102,7 @@ export function makeParametersList(parameters) {
 
 // Preuzimanje tokena iz local storage
 export function getToken() {
-  return "Bearer " + localStorage.getItem(process.env.REACT_APP_TOKEN_KEY);
+  return "Bearer " + localStorage.getItem("token");
 }
 
 export function getUserFromLocalStorage() {
