@@ -12,3 +12,11 @@ export async function getById(id) {
 export async function registerUser(dto) {
   return await request("/user/register", dto, HttpMethod.POST);
 }
+
+export async function loginUser(dto) {
+  return await request("/authenticate", dto, HttpMethod.POST);
+}
+
+export async function activateAccount(email) {
+  return await request("/user/activate", email, HttpMethod.PUT);
+}
