@@ -2,20 +2,29 @@ import '../Admin/AddAdminToBloodBank.scss';
 import { useEffect, useState } from 'react';
 import { addAdminToBloodBank } from '../services/admin/AdminService';
 import {NavLink} from 'react-router-dom';
+import { getAvailableAdmins } from './service/AdminService';
+import { useNavigate } from "react-router-dom";
 
 const AddAdminToBloodBank = () => {
     
-    
+    const navigate = useNavigate();
     const [administrators,setAdministrators] = useState([""]);
     const [adminId, setAdminId] = useState();
+    const [bloodBankId,setBloodBankId] = useState();
 
     useEffect(() => {
-        fetch(`http://localhost:8080/user/availableAdministrators`)
-        .then(res => res.json())
-        .then(data => {
-            setAdministrators(data)
-        })
+        
+        fetchData();
     }, [])
+
+
+    const fetchData = async () => {
+            
+        const response = await getAvailableAdmins();
+        
+        setAdministrators(response.data);
+        
+    };
 
     //function confirm(){
     //    console.log(patientId);}
@@ -23,12 +32,17 @@ const AddAdminToBloodBank = () => {
     function changeAdmin(newAdmin){
         setAdminId(newAdmin);
     }
+    
+    function changeBloodBankId(id){
+        setBloodBankId(id);
+    }
 
     async function confirm() {
         const admId = parseInt(adminId);
-        let dto = {bloodBankId:1,administratorId:admId};
-        const reponse = await addAdminToBloodBank(dto);
-        
+        let dto = {bloodBankId:bloodBankId,administratorId:admId};
+        //const reponse = await addAdminToBloodBank(dto);
+        console.log(dto)
+        navigate("/");
       }
 
     
@@ -41,7 +55,7 @@ const AddAdminToBloodBank = () => {
             
             <div className='bank'>
                 <label>Blood Bank id</label>
-                <input value="1" disabled="true" className='input3'/>
+                <input value={bloodBankId} onChange={(event) => changeBloodBankId(event.target.value)}/>
             </div>
             <div>
                 <label className='bank'>Admins</label>
