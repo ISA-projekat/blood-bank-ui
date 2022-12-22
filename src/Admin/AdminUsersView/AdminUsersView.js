@@ -32,13 +32,6 @@ const AdminUsersView = () => {
     setUsers(event.target.value);
   }
 
-    fetch(`http://localhost:8080/user`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-      });
-  }, []);
-
   function nameChanged(event) {
     setName(event.target.value);
   }
@@ -78,7 +71,6 @@ const AdminUsersView = () => {
                     <button>View appointments</button>
                   </NavLink>
                 </td>
-
               </tr>
             ))}
           </table>

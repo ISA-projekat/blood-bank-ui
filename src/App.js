@@ -53,7 +53,6 @@ function App() {
         <Route path="/admin" element={<AdminMainPage />} />
         <Route path="/admin/addToBloodBank" element={<AddAdminToBloodBank />} />
         <Route path="/admin/register" element={<RegisterAdministrator />} />
-        <Route path="/admin/users" element={<AdminUsersView />} />
       </React.Fragment>
     );
   };
@@ -87,6 +86,18 @@ function App() {
           element={<BloodBankDetailsPage />}
         />
         <Route path={"/schedule-slots"} element={<NewAppointmentSlotPage />} />
+        <Route
+          path={routes.APPOINTMENT_PROCESSING}
+          element={<AppointmentProcessingPage />}
+        />
+        <Route
+          path={routes.USERS_APPOINMENTS}
+          element={<UsersAppointments />}
+        />
+        <Route
+          path={routes.BLOOD_BANK_DETAILS}
+          element={<BloodBankDetailsPage />}
+        />
       </React.Fragment>
     );
   };
@@ -116,6 +127,7 @@ function App() {
         >
           {getUnregisteredRoutes()}
         </Route>
+
         <Route element={<ProtectedRoute isAllowed={context.isLoggedIn} />}>
           <Route path="/user/:id" element={<ProfilePage />} />
         </Route>
@@ -130,13 +142,6 @@ function App() {
           }
         >
           {getSysAdminRoutes()}
-          <Route path="/admin" element={<AdminMainPage />} />
-          <Route
-            path="/admin/addToBloodBank"
-            element={<AddAdminToBloodBank />}
-          />
-          <Route path="/admin/register" element={<RegisterAdministrator />} />
-
         </Route>
         <Route
           element={
@@ -187,30 +192,6 @@ function App() {
           {getAllAuthenticatedRoutes()}
         </Route>
         <Route path="*" exact={true} component={<NotFoundPage />} />
-        <Route
-          element={
-            <ProtectedRoute
-              redirectPath="/"
-              isAllowed={
-                context.isLoggedIn &&
-                context.user.role === "ROLE_BLOOD_BANK_ADMIN"
-              }
-            />
-          }
-        >
-          <Route
-            path={routes.APPOINTMENT_PROCESSING}
-            element={<AppointmentProcessingPage />}
-          />
-          <Route
-            path={routes.USERS_APPOINMENTS}
-            element={<UsersAppointments />}
-          />
-          <Route
-            path={routes.BLOOD_BANK_DETAILS}
-            element={<BloodBankDetailsPage />}
-          />
-        </Route>
       </Routes>
     </MainLayout>
   );
