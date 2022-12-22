@@ -19,6 +19,7 @@ import BloodBankComponent from "./components/bloodBankComponent";
 import BloodBanksPage from "./pages/BloodBanksPage/BloodBanksPage";
 import SurveyPage from "./pages/survey-page/SurveyPage";
 import AdminUsersView from "./Admin/AdminUsersView/AdminUsersView";
+import AdminCalendarView from "./Admin/AdminCalendarView/AdminCalendarView";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         />
         <Route path="/blood-banks" element={<BloodBanksPage />} />
         <Route path="/survey" element={<SurveyPage />} />
+        <Route path="/admin/calendar" element={<AdminCalendarView />} />
       </Routes>
     </div>
   );
