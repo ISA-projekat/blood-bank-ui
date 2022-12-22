@@ -2,6 +2,8 @@ import "../AdminUsersView/AdminUsersView.scss";
 import { useState, useEffect } from "react";
 import { adminSearch } from "../../services/admin/AdminService";
 import { getAllUsers } from "../../services/user/UserService";
+import { NavLink } from "react-router-dom";
+import { routes } from "../../constants/routes";
 
 const AdminUsersView = () => {
   const [users, setUsers] = useState([]);
@@ -17,6 +19,25 @@ const AdminUsersView = () => {
       setUsers(response.data);
     });
   };
+
+  function nameChanged(event) {
+    setName(event.target.value);
+  }
+
+  function surnameChanged(event) {
+    setSurname(event.target.value);
+  }
+
+  function tableChanged(event) {
+    setUsers(event.target.value);
+  }
+
+    fetch(`http://localhost:8080/user`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+      });
+  }, []);
 
   function nameChanged(event) {
     setName(event.target.value);
@@ -52,6 +73,12 @@ const AdminUsersView = () => {
               <tr key={user.id}>
                 <td>{user.firstName}</td>
                 <td>{user.lastName}</td>
+                <td>
+                  <NavLink to={`${routes.USERS_APPOINMENTS_PATH}/${user.id}`}>
+                    <button>View appointments</button>
+                  </NavLink>
+                </td>
+
               </tr>
             ))}
           </table>
