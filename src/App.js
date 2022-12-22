@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/landing-page/LandingPage";
 import { routes } from "./constants/routes";
 import BloodBankDetailsPage from "./pages/BloodBankDetailsPage/BloodBankDetailsPage";
+import AppointmentProcessingPage from "./pages/AppointmentProcessingPage/AppointmentProcessingPage";
 import "./App.css";
 import LoginPage from "./pages/login-page/LoginPage";
 import ProfilePage from "./pages/profile-page/ProfilePage";
@@ -26,6 +27,10 @@ import ActivationPage from "./pages/activation-page/ActivationPage";
 import React, { useContext } from "react";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import userEvent from "@testing-library/user-event";
+import MainLayout from "./components/Layout/MainLayout/MainLayout";
+import NewAppointmentSlotPage from "./pages/Appointments/NewAppointmentSlotPage/NewAppointmentSlotPage";
+import BloodBankSlots from "./pages/Appointments/BloodBankSlots/BloodBankSlots";
+import UsersAppointments from "./pages/UsersAppointments/UsersAppointments";
 
 function App() {
   const context = useContext(AuthContext);
@@ -43,9 +48,19 @@ function App() {
     );
   };
 
-  return (
-    <div>
-      <Routes>
+  const getSysAdminRoutes = () => {
+    return (
+      <React.Fragment>
+        <Route path="/admin" element={<AdminMainPage />} />
+        <Route path="/admin/addToBloodBank" element={<AddAdminToBloodBank />} />
+        <Route path="/admin/register" element={<RegisterAdministrator />} />
+      </React.Fragment>
+    );
+  };
+
+  const getAllPermittedRoutes = () => {
+    return (
+      <React.Fragment>
         <Route path="/" element={<LandingPage />} />
         <Route path="/error/not-found" index element={<NotFoundPage />} />
         <Route path="/error/bad-request" index element={<BadRequestPage />} />
@@ -60,6 +75,49 @@ function App() {
           element={<UnauthorizedPage />}
         />
         <Route path="/error/forbidden" index element={<ForbiddenPage />} />
+      </React.Fragment>
+    );
+  };
+
+  const getAllBloodBankRoutes = () => {
+    return (
+      <React.Fragment>
+        <Route
+          path={routes.BLOOD_BANK_DETAILS}
+          element={<BloodBankDetailsPage />}
+        />
+        <Route path={"/schedule-slots"} element={<NewAppointmentSlotPage />} />
+        <Route
+          path={routes.APPOINTMENT_PROCESSING}
+          element={<AppointmentProcessingPage />}
+        />
+        <Route
+          path={routes.USERS_APPOINMENTS}
+          element={<UsersAppointments />}
+        />
+        <Route
+          path={routes.BLOOD_BANK_DETAILS}
+          element={<BloodBankDetailsPage />}
+        />
+      </React.Fragment>
+    );
+  };
+
+  const getAllAuthenticatedRoutes = () => {
+    return (
+      <React.Fragment>
+        <Route
+          path={"/blood-bank/appointments/:id"}
+          element={<BloodBankSlots />}
+        />
+      </React.Fragment>
+    );
+  };
+
+  return (
+    <MainLayout>
+      <Routes>
+        {getAllPermittedRoutes()}
         <Route
           element={
             <ProtectedRoute
@@ -70,6 +128,7 @@ function App() {
         >
           {getUnregisteredRoutes()}
         </Route>
+
         <Route element={<ProtectedRoute isAllowed={context.isLoggedIn} />}>
           <Route path="/user/:id" element={<ProfilePage />} />
         </Route>
@@ -83,22 +142,22 @@ function App() {
             />
           }
         >
-          <Route path="/admin" element={<AdminMainPage />} />
-          <Route
-            path="/admin/addToBloodBank"
-            element={<AddAdminToBloodBank />}
-          />
-          <Route path="/admin/register" element={<RegisterAdministrator />} />
+          {getSysAdminRoutes()}
+        </Route>
+        <Route
+          element={
+            <ProtectedRoute
+              redirectPath="/"
+              isAllowed={
+                context.isLoggedIn &&
+                (context.user.role === "ROLE_BLOOD_BANK_ADMIN" ||
+                  context.user.role === "ROLE_SYS_ADMIN")
+              }
+            />
+          }
+        >
           <Route path="/admin/users" element={<AdminUsersView />} />
         </Route>
-
-        <Route
-          path={routes.BLOOD_BANK_DETAILS}
-          element={<BloodBankDetailsPage />}
-        />
-        <Route path="/blood-banks" element={<BloodBanksPage />} />
-        <Route path="/admin/calendar" element={<AdminCalendarView />} />
-
         <Route
           element={
             <ProtectedRoute
@@ -111,9 +170,31 @@ function App() {
         >
           <Route path="/survey" element={<SurveyPage />} />
         </Route>
+
+        <Route
+          element={
+            <ProtectedRoute
+              redirectPath="/"
+              isAllowed={
+                context.isLoggedIn &&
+                context.user.role === "ROLE_BLOOD_BANK_ADMIN"
+              }
+            />
+          }
+        >
+          {getAllBloodBankRoutes()}
+        </Route>
+
+        <Route
+          element={
+            <ProtectedRoute redirectPath="/" isAllowed={context.isLoggedIn} />
+          }
+        >
+          {getAllAuthenticatedRoutes()}
+        </Route>
         <Route path="*" exact={true} component={<NotFoundPage />} />
       </Routes>
-    </div>
+    </MainLayout>
   );
 }
 

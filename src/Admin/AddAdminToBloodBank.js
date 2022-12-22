@@ -71,11 +71,9 @@ const AddAdminToBloodBank = () => {
             <div>
                 <button onClick={confirm}>Confirm</button>
             </div>
-
-        </div>
+      </div>
     </div>
-     );
-}
- 
-export default AddAdminToBloodBank;
+  );
+};
 
+export default AddAdminToBloodBank;

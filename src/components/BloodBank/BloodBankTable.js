@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,6 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { TablePagination } from "@mui/material";
+import { useNavigate } from "react-router";
+import AuthContext from "../../store/bloodbank/login/login-context";
 
 const BloodBankTable = ({
   rows,
@@ -17,6 +19,18 @@ const BloodBankTable = ({
   page,
   order,
 }) => {
+  const navigate = useNavigate();
+
+  const context = useContext(AuthContext);
+
+  const handleRowClick = (event, id) => {
+    if (!context.isLoggedIn) {
+      return;
+    }
+
+    navigate("/blood-bank/appointments/" + id);
+  };
+
   const renderTableData = (data) => {
     let result = [];
 
@@ -33,6 +47,8 @@ const BloodBankTable = ({
         <TableRow
           key={bb.name}
           sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          className="table-row-class"
+          onClick={(event) => handleRowClick(event, bb.id)}
         >
           <TableCell component="th" scope="row">
             {bb.name}
@@ -58,19 +74,31 @@ const BloodBankTable = ({
         <Table sx={{ minWidth: 800 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell onClick={sortByName}>
+              <TableCell onClick={sortByName} className="cursor-pointer">
                 <b>Name</b>
               </TableCell>
-              <TableCell align="right" onClick={sortByStreet}>
+              <TableCell
+                align="right"
+                onClick={sortByStreet}
+                className="cursor-pointer"
+              >
                 <b>Street</b>
               </TableCell>
-              <TableCell align="right" onClick={sortByCity}>
+              <TableCell
+                align="right"
+                onClick={sortByCity}
+                className="cursor-pointer"
+              >
                 <b>City</b>
               </TableCell>
               <TableCell align="right">
                 <b>Country</b>
               </TableCell>
-              <TableCell align="right" onClick={sortByGrade}>
+              <TableCell
+                align="right"
+                onClick={sortByGrade}
+                className="cursor-pointer"
+              >
                 <b>Rating</b>
               </TableCell>
             </TableRow>

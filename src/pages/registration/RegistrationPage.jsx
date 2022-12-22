@@ -4,7 +4,6 @@ import './RegistrationPage.scss';
 
 const RegistrationPage = () => {
     return(
-    <div className='pages-wrapper'>
     <div className='registration'>
         <div className='registration__header'>
             <h1> Become a blood donor </h1>
@@ -12,7 +11,6 @@ const RegistrationPage = () => {
         <div className='registration__form'>
             <RegistrationForm />
         </div>
-    </div>
     </div>)
 }
 
