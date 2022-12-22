@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import {
   AppointmentReviewDto,
   BloodStock,
 } from "../../store/appointment/Types";
 import * as appointmentService from "../../services/AppointmentService";
+import * as surveyService from "../../services/SurveyService";
 import "./AppointmentProcessingPage.css";
 
 const AppointmentProcessingPage = () => {
@@ -16,6 +17,7 @@ const AppointmentProcessingPage = () => {
   const [quantity, setQuantity] = useState<number>(0);
   const [enterDetailsInProgress, SetEnterDetailsInProgress] =
     useState<boolean>(false);
+  const [userIsAllowed, setUserIsAllowed] = useState<boolean>(true);
 
   const reviewAppointment = (status: string) => {
     const bloodStock: BloodStock = {
@@ -42,6 +44,16 @@ const AppointmentProcessingPage = () => {
       .then((res) => console.log("Appointment reviewed successfully"));
   };
 
+  const fetchAllowUser = async () => {
+    await surveyService
+      .getAllowUser(parseInt(id || "0"))
+      .then((resp) => setUserIsAllowed(resp.data));
+  };
+
+  useEffect(() => {
+    fetchAllowUser();
+  }, []);
+
   return (
     <div className="appointment-processing-wrapper">
       {!enterDetailsInProgress && (
@@ -55,6 +67,12 @@ const AppointmentProcessingPage = () => {
           >
             Finish and enter details
           </button>
+          <br />
+          {userIsAllowed ? (
+            <p>This user should be allowed to have an appointment</p>
+          ) : (
+            <p>This user should not be allowed to have an appointment</p>
+          )}
         </div>
       )}
       {enterDetailsInProgress && (
