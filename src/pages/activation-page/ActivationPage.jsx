@@ -17,12 +17,11 @@ const ActivationPage = () => {
         })
     }
 
-    return (<div className='pages-wrapper align-items'>
+    return (
         <div className='activation-container'>
             <h1>Activate your account by clicking on this link</h1>
             <button className='orange-button btn-submit' onClick={handleActivate}>Activate</button>
-        </div>
-    </div>)
+        </div>)
 }
 
 export default ActivationPage;

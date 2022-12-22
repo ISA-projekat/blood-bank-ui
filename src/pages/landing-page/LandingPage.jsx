@@ -7,17 +7,7 @@ export default function LandingPage() {
 
   const context = useContext(AuthContext)
 
-  const handleLogout = () => {
-    context.logout();
-  }
-
   return (
-    <div className="wrapper">
-      <div className="landing-navbar">
-        <div className="landing-navbar__item"><NavLink to='/blood-banks' className={'navlink'}>Find a donor center</NavLink></div>
-        {!context.isLoggedIn && <div className="landing-navbar__item"><NavLink to='/login' className={'navlink'}>Already a donor?</NavLink></div>}
-        {context.isLoggedIn && <div className="landing-navbar__item"><button className="orange-button" style={{marginTop: "0rem", padding: "0.5rem 1rem"}} onClick={handleLogout}>Logout</button></div>}
-      </div>
       <div className="landing-main">
         <div className="landing-main__header">
           <div className="landing-main__header-text">
@@ -36,9 +26,15 @@ export default function LandingPage() {
             </button>
             </NavLink>
           </div>}
+          {context.user.role === 'ROLE_REGISTERED' && <div className="landing-main__header-button">
+            <NavLink to='/register' className={'navlink'}>
+            <button className="landing-main__header-button-style">
+              Schedule a donation
+            </button>
+            </NavLink>
+          </div>}
         </div>
         <div className="landing-main__image"></div>
       </div>
-    </div>
   );
 }

@@ -6,7 +6,6 @@ const LoginPage = () => {
 
 
     return (
-    <div className='pages-wrapper'>
         <div className='login-container'>
             <div className='login-content'>
                 <div className='form-container'>
@@ -22,7 +21,6 @@ const LoginPage = () => {
                 </div>
             </div>
         </div>
-    </div>
     );
 };
 

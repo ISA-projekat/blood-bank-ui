@@ -7,9 +7,9 @@ const BadRequestPage = () => {
     const location = useLocation()
     const { message } = location.state
 
-    return (<div className='pages-wrapper'>
+    return (
         <ErrorMessageComponent title={'Error 400 Bad Request'} message={message}/>
-    </div>)
+    )
 }
 
 export default BadRequestPage;

@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Button } from "@mui/material";
 import { addSurvey } from "../../services/survey/surveyService";
 import { useNavigate } from "react-router";
+import AuthContext from "../../store/bloodbank/login/login-context";
 
 const SurveyForm = () => {
   const form = useForm();
   const { register, handleSubmit } = form;
   const navigate = useNavigate();
+  const context = useContext(AuthContext);
 
   const onSubmit = async (val) => {
     console.log(val);
-    const dto = { ...val, userId: 1 };
+    const dto = { ...val, userId: context.user.id };
     const response = await addSurvey(dto);
     if (!response || !response.ok) {
       alert("Error in creating survey");

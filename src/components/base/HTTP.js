@@ -47,7 +47,7 @@ Axios.getInstance().interceptors.response.use(
     } else if (status === 401) {
       history.push("/error/unauthorized");
     } else if (status === 400) {
-      history.push("error/bad-request", { message: data.message });
+      history.push("/error/bad-request", { message: data.message });
     }
 
     return error;

@@ -1,6 +1,7 @@
 import "../AdminUsersView/AdminUsersView.scss";
 import { useState, useEffect } from "react";
 import { adminSearch } from "../../services/admin/AdminService";
+import { getAllUsers } from "../../services/user/UserService";
 import { NavLink } from "react-router-dom";
 import { routes } from "../../constants/routes";
 
@@ -10,6 +11,27 @@ const AdminUsersView = () => {
   const [surname, setSurname] = useState();
 
   useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    getAllUsers().then((response) => {
+      setUsers(response.data);
+    });
+  };
+
+  function nameChanged(event) {
+    setName(event.target.value);
+  }
+
+  function surnameChanged(event) {
+    setSurname(event.target.value);
+  }
+
+  function tableChanged(event) {
+    setUsers(event.target.value);
+  }
+
     fetch(`http://localhost:8080/user`)
       .then((res) => res.json())
       .then((data) => {
@@ -56,6 +78,7 @@ const AdminUsersView = () => {
                     <button>View appointments</button>
                   </NavLink>
                 </td>
+
               </tr>
             ))}
           </table>

@@ -6,10 +6,10 @@
 
 .pages-wrapper {
     background-image: $background-primary;
-    height: 86%;
-    padding: 4% 6%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    padding: 3% 5%;
 }
 
 .align-items {
@@ -26,14 +26,16 @@
     border-radius: .5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 5rem 10rem;
-    width: 70%;
+    width: 100%;
+    height: 60%;
 }
 
 .error-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 90%;
+    height: 100%;
+    width: 70%;
 }
 
 .orange-button {
@@ -41,31 +43,80 @@
     margin-top: 4rem;
     
     & {
-        padding: 1.3rem 2rem;
-        font-size: 1.8rem;
-        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+        border-radius: 1rem;
         border: none;
         color: $color-white;
         background: $background-button;
         transition: .3s;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
         .navlink {
             text-decoration: none;
             color: $color-white;
         }
     }
+    
     &:hover {
         transform: scale(1.05);
         transition: .3s all;
         cursor: pointer;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
+
     &:active {
         transform: scale(0.9);
         transition: .2s all;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
         
+}
+
+.button-small {
+    & {
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+        border-radius: 1rem;
+        border: none;
+        color: $color-white;
+        transition: .3s;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+        .navlink {
+            text-decoration: none;
+            color: $color-white;
+        }
+    }
+    
+    &:hover:enabled {
+        transform: scale(1.05);
+        transition: .3s all;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    &:active:enabled {
+        transform: scale(0.9);
+        transition: .2s all;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    
+    &:hover:disabled, &:active:disabled {
+        cursor: pointer;
+    }
+}
+
+.bg-orange {
+    background: $background-button;
+}
+
+.bg-red {
+    background: $background-button-red;
+
+    &:disabled {
+        opacity: 25%;
+    }
 }
 
 .group-items {
@@ -127,4 +178,51 @@
 
 .MuiTableContainer-root{
     font-size: 200px !important;
+}
+
+.landing-navbar {
+    display: flex;
+    justify-content: flex-end;
+    animation: moveInTop 1s ease-out;
+    height: 5%;
+
+    &__item {
+        color: #fff;
+        font-size: 2rem;
+        margin-right: 5rem;
+
+        &:hover {
+            cursor: pointer;
+            color: #23343B;
+        }
+    }
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    padding: 3% 10%;
+    height: 70%;
+}
+
+.table-row-class {
+    font-size: 2rem;
+    &:hover {
+        background-color: #eee;
+        cursor: pointer;
+    }
+}
+
+.cursor-pointer {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.MuiTableHead-root {
+    font-size: 2rem !important;
+}
+
+.MuiTableRow-root {
+    font-size: 2rem !important;
 }
