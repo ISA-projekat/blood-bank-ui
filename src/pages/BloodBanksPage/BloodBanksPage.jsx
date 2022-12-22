@@ -127,7 +127,6 @@ const BloodBanksPage = () => {
     }
 
     return (
-        <div className='pages-wrapper'>
             <div className='blood-banks'>
                 <div className='blood-banks__header'>
                     <h1>Blood bank overview</h1>
@@ -202,7 +201,6 @@ const BloodBanksPage = () => {
                     <BloodBankTable rows = {bloodBanks} sortByName={onSortByName} sortByCity={onSortByCity} sortByStreet={onSortByStreet} sortByGrade={onSortByGrade} onPageChange={onPageChange} page={page}/>
                 </div>
             </div>
-        </div>
     )
 }
 

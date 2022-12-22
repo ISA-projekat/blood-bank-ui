@@ -3,9 +3,9 @@ import ErrorMessageComponent from '../../components/error/ErrorMessageComponent'
 
 const InternalServerErrorPage = () => {
 
-    return (<div className='pages-wrapper'>
+    return (
         <ErrorMessageComponent title={'Whoops! 500 Internal Server Error'} message={'Our service provider has made a mistake'} />
-    </div>)
+    )
 }
 
 export default InternalServerErrorPage;

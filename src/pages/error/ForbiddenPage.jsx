@@ -3,9 +3,9 @@ import ErrorMessageComponent from '../../components/error/ErrorMessageComponent'
 
 const ForbiddenPage = () => {
 
-    return (<div className='pages-wrapper'>
+    return (
         <ErrorMessageComponent title={'Error 403 Forbidden'} message={'You shall not pass'} />
-    </div>)
+    )
 }
 
 export default ForbiddenPage;

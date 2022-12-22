@@ -6,10 +6,10 @@
 
 .pages-wrapper {
     background-image: $background-primary;
-    height: 86%;
-    padding: 4% 6%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    padding: 3% 5%;
 }
 
 .align-items {
@@ -26,14 +26,16 @@
     border-radius: .5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 5rem 10rem;
-    width: 70%;
+    width: 100%;
+    height: 60%;
 }
 
 .error-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 90%;
+    height: 100%;
+    width: 70%;
 }
 
 .orange-button {
@@ -127,4 +129,29 @@
 
 .MuiTableContainer-root{
     font-size: 200px !important;
+}
+
+.landing-navbar {
+    display: flex;
+    justify-content: flex-end;
+    animation: moveInTop 1s ease-out;
+    height: 5%;
+
+    &__item {
+        color: #fff;
+        font-size: 2rem;
+        margin-right: 5rem;
+
+        &:hover {
+            cursor: pointer;
+            color: #23343B;
+        }
+    }
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    padding: 3% 10%;
+    height: 70%;
 }

@@ -1,23 +1,8 @@
 @import './../../sass/main.scss';
 
-.landing-navbar {
-    display: flex;
-    justify-content: flex-end;
-    animation: moveInTop 1s ease-out;
-    &__item {
-        color: #fff;
-        font-size: 2rem;
-        margin-right: 5rem;
-        &:hover {
-            cursor: pointer;
-            color: #23343B;
-        }
-    }
-}
-
 .landing-main {
+    width: 100%;
     min-height: 70rem;
-    margin: 0 10%;
     margin-top: 9%;
     display: flex;
     justify-content: space-between;

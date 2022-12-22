@@ -25,6 +25,7 @@ import ActivationPage from "./pages/activation-page/ActivationPage";
 import React, { useContext } from "react";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import userEvent from "@testing-library/user-event";
+import MainLayout from "./components/Layout/MainLayout/MainLayout";
 
 function App() {
   const context = useContext(AuthContext);
@@ -42,9 +43,20 @@ function App() {
     );
   };
 
-  return (
-    <div>
-      <Routes>
+  const getSysAdminRoutes = () => {
+    return (
+      <React.Fragment>
+        <Route path="/admin" element={<AdminMainPage />} />
+        <Route path="/admin/addToBloodBank" element={<AddAdminToBloodBank />} />
+        <Route path="/admin/register" element={<RegisterAdministrator />} />
+        <Route path="/admin/users" element={<AdminUsersView />} />
+      </React.Fragment>
+    );
+  };
+
+  const getAllPermittedRoutes = () => {
+    return (
+      <React.Fragment>
         <Route path="/" element={<LandingPage />} />
         <Route path="/error/not-found" index element={<NotFoundPage />} />
         <Route path="/error/bad-request" index element={<BadRequestPage />} />
@@ -59,6 +71,14 @@ function App() {
           element={<UnauthorizedPage />}
         />
         <Route path="/error/forbidden" index element={<ForbiddenPage />} />
+      </React.Fragment>
+    );
+  };
+
+  return (
+    <MainLayout>
+      <Routes>
+        {getAllPermittedRoutes()}
         <Route
           element={
             <ProtectedRoute
@@ -82,13 +102,7 @@ function App() {
             />
           }
         >
-          <Route path="/admin" element={<AdminMainPage />} />
-          <Route
-            path="/admin/addToBloodBank"
-            element={<AddAdminToBloodBank />}
-          />
-          <Route path="/admin/register" element={<RegisterAdministrator />} />
-          <Route path="/admin/users" element={<AdminUsersView />} />
+          {getSysAdminRoutes()}
         </Route>
 
         <Route
@@ -110,7 +124,7 @@ function App() {
         </Route>
         <Route path="*" exact={true} component={<NotFoundPage />} />
       </Routes>
-    </div>
+    </MainLayout>
   );
 }
 
