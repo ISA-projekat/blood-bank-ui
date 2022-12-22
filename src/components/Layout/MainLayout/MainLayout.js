@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import AuthContext from "../../../store/bloodbank/login/login-context";
 import BloodBankAdminNavbar from "../Navbar/BloodBankAdminNavbar";
 import RegisteredNavbar from "../Navbar/RegisteredNavbar";
@@ -9,9 +9,11 @@ import UnregisterdNavbar from "../Navbar/UnregisteredNavbar";
 const MainLayout = (props) => {
   const context = useContext(AuthContext);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const logout = () => {
     context.logout();
+    navigate("/");
   };
 
   const isCurrentPath = (path) => {

@@ -26,6 +26,8 @@ import React, { useContext } from "react";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import userEvent from "@testing-library/user-event";
 import MainLayout from "./components/Layout/MainLayout/MainLayout";
+import NewAppointmentSlotPage from "./pages/Appointments/NewAppointmentSlotPage/NewAppointmentSlotPage";
+import BloodBankSlots from "./pages/Appointments/BloodBankSlots/BloodBankSlots";
 
 function App() {
   const context = useContext(AuthContext);
@@ -75,6 +77,29 @@ function App() {
     );
   };
 
+  const getAllBloodBankRoutes = () => {
+    return (
+      <React.Fragment>
+        <Route
+          path={routes.BLOOD_BANK_DETAILS}
+          element={<BloodBankDetailsPage />}
+        />
+        <Route path={"/schedule-slots"} element={<NewAppointmentSlotPage />} />
+      </React.Fragment>
+    );
+  };
+
+  const getAllAuthenticatedRoutes = () => {
+    return (
+      <React.Fragment>
+        <Route
+          path={"/blood-bank/appointments/:id"}
+          element={<BloodBankSlots />}
+        />
+      </React.Fragment>
+    );
+  };
+
   return (
     <MainLayout>
       <Routes>
@@ -106,11 +131,6 @@ function App() {
         </Route>
 
         <Route
-          path={routes.BLOOD_BANK_DETAILS}
-          element={<BloodBankDetailsPage />}
-        />
-
-        <Route
           element={
             <ProtectedRoute
               redirectPath="/"
@@ -121,6 +141,28 @@ function App() {
           }
         >
           <Route path="/survey" element={<SurveyPage />} />
+        </Route>
+
+        <Route
+          element={
+            <ProtectedRoute
+              redirectPath="/"
+              isAllowed={
+                context.isLoggedIn &&
+                context.user.role === "ROLE_BLOOD_BANK_ADMIN"
+              }
+            />
+          }
+        >
+          {getAllBloodBankRoutes()}
+        </Route>
+
+        <Route
+          element={
+            <ProtectedRoute redirectPath="/" isAllowed={context.isLoggedIn} />
+          }
+        >
+          {getAllAuthenticatedRoutes()}
         </Route>
         <Route path="*" exact={true} component={<NotFoundPage />} />
       </Routes>

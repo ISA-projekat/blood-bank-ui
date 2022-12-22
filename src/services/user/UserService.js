@@ -20,3 +20,7 @@ export async function loginUser(dto) {
 export async function activateAccount(email) {
   return await request("/user/activate", email, HttpMethod.PUT);
 }
+
+export async function getAvailableAdministators() {
+  return await request("/user/availableAdministrators");
+}

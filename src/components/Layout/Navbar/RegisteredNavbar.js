@@ -10,6 +10,11 @@ const RegisteredNavbar = (props) => {
         </NavLink>
       </div>
       <div className="landing-navbar__item">
+        <NavLink to="/survey" className={"navlink"}>
+          My survey
+        </NavLink>
+      </div>
+      <div className="landing-navbar__item">
         <NavLink to="/profile" className={"navlink"}>
           My profile
         </NavLink>

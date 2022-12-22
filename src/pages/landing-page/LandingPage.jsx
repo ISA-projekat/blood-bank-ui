@@ -7,10 +7,6 @@ export default function LandingPage() {
 
   const context = useContext(AuthContext)
 
-  const handleLogout = () => {
-    context.logout();
-  }
-
   return (
       <div className="landing-main">
         <div className="landing-main__header">
