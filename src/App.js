@@ -21,6 +21,7 @@ import BloodBankComponent from "./components/bloodBankComponent";
 import BloodBanksPage from "./pages/BloodBanksPage/BloodBanksPage";
 import SurveyPage from "./pages/survey-page/SurveyPage";
 import AdminUsersView from "./Admin/AdminUsersView/AdminUsersView";
+import AdminCalendarView from "./Admin/AdminCalendarView/AdminCalendarView";
 import AuthContext from "./store/bloodbank/login/login-context";
 import ActivationPage from "./pages/activation-page/ActivationPage";
 import React, { useContext } from "react";

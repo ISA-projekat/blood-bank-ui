@@ -21,7 +21,7 @@ const BloodBanksPage = () => {
 
     const fetchData = async () => {
             
-        const response = await getPage(0,2);
+          const response = await getPage(0,2);
         
         setPage(response.data)
         setBloodBanks(response.data.content);
