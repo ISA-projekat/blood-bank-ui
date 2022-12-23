@@ -8,6 +8,7 @@ import { loginUser } from "../../services/user/UserService";
 import { useNavigate } from "react-router";
 import AuthContext from "../../store/bloodbank/login/login-context";
 import { CheckIfFirstLoginCompleted } from "../../Admin/service/AdminService";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const form = useForm();
@@ -36,16 +37,19 @@ const LoginForm = () => {
       //console.log(response.data);
       context.login(response.data);
 
-      
-      
-      
 
-      // if(respons.data == false){
-      //   navigate("/admin/redirect")
-      //   return;
-      // }
-        
-      navigate("/blood-banks");
+      toast.success("Welcome back!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      navigate("/");
+
     });
 
   };

@@ -4,6 +4,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import FormRules from "../../components/forms/rules/FormRules";
 import { registerAdministrator } from "../../services/admin/AdminService";
 import { ToastContainer, toast } from "react-toastify";
+import { Navigate } from "react-router";
 
 
 

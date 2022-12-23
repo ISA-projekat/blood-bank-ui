@@ -2,10 +2,36 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../store/bloodbank/login/login-context";
 import "./LandingPage.scss";
+import { useEffect } from "react";
+import { CheckIfFirstLoginCompleted } from "../../Admin/service/AdminService";
+import { useNavigate } from "react-router";
+
 
 export default function LandingPage() {
 
   const context = useContext(AuthContext)
+  const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    if (context.isLoggedIn){
+      fetchData();
+    }
+    
+  }, [])
+
+
+  const fetchData = async () => {
+    
+    
+    const response = await CheckIfFirstLoginCompleted(context.user.sub);
+    
+    if(response.data == false){
+      navigate("/admin/redirect")
+    }
+    
+  };
+
 
   return (
       <div className="landing-main">
@@ -27,7 +53,7 @@ export default function LandingPage() {
             </NavLink>
           </div>}
           {context.user.role === 'ROLE_REGISTERED' && <div className="landing-main__header-button">
-            <NavLink to='/register' className={'navlink'}>
+            <NavLink to='/appointments/search' className={'navlink'}>
             <button className="landing-main__header-button-style">
               Schedule a donation
             </button>

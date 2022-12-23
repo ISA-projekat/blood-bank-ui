@@ -25,7 +25,11 @@ const BloodBankAdminNavbar = (props) => {
   };
 
   const getAppHistoryLink = () => {
-    return "/blood-bank/history/" + bloodBankId;
+    return "/admin/calendar";
+  };
+
+  const getUsersLink = () => {
+    return "/admin/users";
   };
 
   return (
@@ -38,6 +42,11 @@ const BloodBankAdminNavbar = (props) => {
       <div className="landing-navbar__item">
         <NavLink to={getAppSlotsLink()} className={"navlink"}>
           Appointment slots
+        </NavLink>
+      </div>
+      <div className="landing-navbar__item">
+        <NavLink to={getUsersLink()} className={"navlink"}>
+          Users
         </NavLink>
       </div>
       <div className="landing-navbar__item">

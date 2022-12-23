@@ -23,7 +23,6 @@ const calculateRemainingTime = (expiresIn) => {
 const retrieveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
   const expiresIn = localStorage.getItem("expires");
-  console.log(expiresIn);
 
   const remainingTime = calculateRemainingTime(expiresIn);
   if (remainingTime <= 0) {
@@ -45,7 +44,6 @@ const retriveUserFromToken = (token) => {
     firstTime: decoded.firstTime
   };
 
-  console.log("User", user);
   return user;
 };
 
@@ -70,7 +68,6 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("expires");
 
     if (logoutTimer) {
-      alert("Your session has expired!");
       clearTimeout(logoutTimer);
     }
   }, []);

@@ -11,6 +11,7 @@ import { NestCamWiredStandTwoTone } from '@mui/icons-material';
 import { useContext } from 'react';
 import AuthContext from '../../store/bloodbank/login/login-context';
 import { getBloodBankId } from '../service/AdminService';
+import './AdminCalendarView.scss';
 
 
 const locales = {
@@ -62,12 +63,9 @@ const AdminCalendarView = () => {
 
     const fetchData = async () => {
         
-        console.log("Eo me ovde" + context.user.id)
         const bankId = await getBloodBankId(context.user.id)
         const response = await getByBloodBank(bankId.data);
-        console.log(response.data[0])
         const result = makeCalendarItems(response.data)
-        console.log('ERJASHDL', result)
         setAppointments(result);
         
     };
@@ -75,7 +73,6 @@ const AdminCalendarView = () => {
     function makeCalendarItems(appointments) {
 
         let result = []
-        console.log('aj daj mi ovo', appointments)
         appointments.forEach((app)=>{
             let singleItem = {
                 title: app.firstName +" "+ app.lastName,
@@ -83,19 +80,21 @@ const AdminCalendarView = () => {
                 end: new Date(app.endDate[0], app.endDate[1]-1,app.endDate[2],app.endDate[3])
             }
             result.push(singleItem);
-            console.log('Result posle iteracije: ', result)
         })
-        console.log("Tu sam");    
-        console.log(result);
 
         return result;
     }
 
-    return ( 
-        <div>
+    return (
+        <div className='calendar-container'> 
+        <div className='header'>
+            Work calendar
+        </div>
+        <div className='calendar-wrapper'>
             <Calendar localizer={localizer} events={appointmentsCal}
              startAccessor="start" endAccessor="end"
-              style={{ height: 500, margin: "50px" }} />
+               />
+        </div>
         </div>
      );
 }

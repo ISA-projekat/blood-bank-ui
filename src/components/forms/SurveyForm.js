@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { addSurvey } from "../../services/survey/surveyService";
 import { useNavigate } from "react-router";
 import AuthContext from "../../store/bloodbank/login/login-context";
+import { toast } from "react-toastify";
 
 const SurveyForm = () => {
   const form = useForm();
@@ -16,11 +17,29 @@ const SurveyForm = () => {
     const dto = { ...val, userId: context.user.id };
     const response = await addSurvey(dto);
     if (!response || !response.ok) {
-      alert("Error in creating survey");
+      toast.error("Something went wrong with form creation!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       return;
     }
 
-    alert("Survey successfully created");
+    toast.success("Form successfully created!", {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
     navigate("/");
   };
 
