@@ -31,6 +31,7 @@ import MainLayout from "./components/Layout/MainLayout/MainLayout";
 import NewAppointmentSlotPage from "./pages/Appointments/NewAppointmentSlotPage/NewAppointmentSlotPage";
 import BloodBankSlots from "./pages/Appointments/BloodBankSlots/BloodBankSlots";
 import UsersAppointments from "./pages/UsersAppointments/UsersAppointments";
+import FirstLoginPage from "./pages/first-login-redirect-page/FirstLoginPage";
 import SearchBankSlots from "./pages/Appointments/SearchBankSlots/SearchBankSlots";
 import UserCalendar from "./pages/Appointments/UserCalendar/UserCalendar";
 import "react-toastify/scss/main.scss";
@@ -43,7 +44,7 @@ function App() {
   const getUnregisteredRoutes = () => {
     return (
       <React.Fragment>
-        <Route path="/login" element={<LoginPage />} />
+        <Route exact path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/registration-success" element={<RegistrationSuccess />} />
         <Route path="/activate/:email" element={<ActivationPage />} />
@@ -101,6 +102,11 @@ function App() {
         <Route
           path={routes.BLOOD_BANK_DETAILS}
           element={<BloodBankDetailsPage />}
+        />
+        <Route
+          exact
+          path={"/admin/redirect"}
+          element={<FirstLoginPage/>}
         />
         <Route path="/admin/calendar" element={<AdminCalendarView />} />
         <Route path="/new-slot" element={<NewAppointmentSlotPage />} />

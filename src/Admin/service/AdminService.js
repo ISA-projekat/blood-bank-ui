@@ -6,6 +6,10 @@ export async function getAvailableAdmins() {
   }
 
 
-  export async function getBloodBankId(id) {
+export async function getBloodBankId(id) {
     return await request(`http://localhost:8080/bloodbank/by-admin/`+id);
+  }
+
+  export async function CheckIfFirstLoginCompleted(email) {
+    return await request(`http://localhost:8080/user/check-if-first-login-completed/`+email);
   }

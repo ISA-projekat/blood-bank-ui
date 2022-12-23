@@ -7,6 +7,7 @@ import FormRules from "./rules/FormRules";
 import { loginUser } from "../../services/user/UserService";
 import { useNavigate } from "react-router";
 import AuthContext from "../../store/bloodbank/login/login-context";
+import { CheckIfFirstLoginCompleted } from "../../Admin/service/AdminService";
 import { toast } from "react-toastify";
 
 const LoginForm = () => {
@@ -25,7 +26,7 @@ const LoginForm = () => {
     formState: { errors },
   } = form;
 
-  const onSubmit = (dto) => {
+  const  onSubmit = (dto) => {
     loginUser(dto).then((response) => {
       if (!response || !response.ok) {
         setErrorMessage("Invalid credentials");
@@ -33,8 +34,10 @@ const LoginForm = () => {
       }
 
       // Response vraca token
-      console.log(response.data);
+      //console.log(response.data);
       context.login(response.data);
+
+
       toast.success("Welcome back!", {
         position: "top-center",
         autoClose: 1000,
@@ -46,7 +49,9 @@ const LoginForm = () => {
         theme: "colored",
       });
       navigate("/");
+
     });
+
   };
 
   return (

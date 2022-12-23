@@ -17,3 +17,7 @@ export async function registerAdministrator(dto){
 export async function adminSearch(dto){
     return await request("user/search" + makeParametersList(dto));
 }
+
+export async function changeAdminPassword(dto){
+    return await request("user/admin/change-password" ,dto, HttpMethod.POST);
+}
