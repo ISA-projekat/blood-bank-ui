@@ -47,3 +47,11 @@ export async function createSlot(dto) {
   return await request("appointment-slot/", dto, HttpMethod.POST);
 }
 
+export async function getPage(page, size = 2, sort = "") {
+  let dto = {
+    page: page,
+    size: size,
+    sort: sort,
+  };
+  return await request("/appointment-slot/page" + makeParametersList(dto));
+}
