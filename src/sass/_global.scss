@@ -185,6 +185,7 @@
     justify-content: flex-end;
     animation: moveInTop 1s ease-out;
     height: 5%;
+    align-items: center;
 
     &__item {
         color: #fff;
@@ -217,6 +218,46 @@
     &:hover {
         cursor: pointer;
     }
+}
+
+.home {
+
+    display: flex;
+    align-self: center;
+
+    &:hover {
+        cursor: pointer;
+        color: white;
+    }
+
+    &__image {
+        width: 5rem;
+        height: 5rem;
+        font-size: 2.5rem;
+        background-image: url('../assets/blood-drop-svgrepo-com.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        margin-right: 1rem;
+    }
+
+    &__text {
+        display: flex;
+        color: white;
+        font-size: 2rem;
+        align-items: center;
+
+        &:hover {
+            color: white 
+        }
+    }
+    
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .MuiTableHead-root {

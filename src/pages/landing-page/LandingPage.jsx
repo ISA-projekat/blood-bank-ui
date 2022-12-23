@@ -27,7 +27,7 @@ export default function LandingPage() {
             </NavLink>
           </div>}
           {context.user.role === 'ROLE_REGISTERED' && <div className="landing-main__header-button">
-            <NavLink to='/register' className={'navlink'}>
+            <NavLink to='/appointments/search' className={'navlink'}>
             <button className="landing-main__header-button-style">
               Schedule a donation
             </button>

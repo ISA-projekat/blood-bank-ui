@@ -31,6 +31,9 @@ import MainLayout from "./components/Layout/MainLayout/MainLayout";
 import NewAppointmentSlotPage from "./pages/Appointments/NewAppointmentSlotPage/NewAppointmentSlotPage";
 import BloodBankSlots from "./pages/Appointments/BloodBankSlots/BloodBankSlots";
 import UsersAppointments from "./pages/UsersAppointments/UsersAppointments";
+import SearchBankSlots from "./pages/Appointments/SearchBankSlots/SearchBankSlots";
+import UserCalendar from "./pages/Appointments/UserCalendar/UserCalendar";
+import "react-toastify/scss/main.scss";
 
 function App() {
   const context = useContext(AuthContext);
@@ -99,6 +102,7 @@ function App() {
           path={routes.BLOOD_BANK_DETAILS}
           element={<BloodBankDetailsPage />}
         />
+        <Route path="/admin/calendar" element={<AdminCalendarView />} />
       </React.Fragment>
     );
   };
@@ -115,86 +119,91 @@ function App() {
   };
 
   return (
-    <MainLayout>
-      <Routes>
-        {getAllPermittedRoutes()}
-        <Route
-          element={
-            <ProtectedRoute
-              isAllowed={!context.isLoggedIn}
-              redirectPath={"/"}
-            />
-          }
-        >
-          {getUnregisteredRoutes()}
-        </Route>
+    <React.Fragment>
+      <MainLayout>
+        <Routes>
+          {getAllPermittedRoutes()}
+          <Route
+            element={
+              <ProtectedRoute
+                isAllowed={!context.isLoggedIn}
+                redirectPath={"/"}
+              />
+            }
+          >
+            {getUnregisteredRoutes()}
+          </Route>
 
-        <Route element={<ProtectedRoute isAllowed={context.isLoggedIn} />}>
-          <Route path="/user/:id" element={<ProfilePage />} />
-        </Route>
-        <Route
-          element={
-            <ProtectedRoute
-              isAllowed={
-                context.isLoggedIn && context.user.role === "ROLE_SYS_ADMIN"
-              }
-              redirectPath={"/"}
-            />
-          }
-        >
-          {getSysAdminRoutes()}
-        </Route>
-        <Route
-          element={
-            <ProtectedRoute
-              redirectPath="/"
-              isAllowed={
-                context.isLoggedIn &&
-                (context.user.role === "ROLE_BLOOD_BANK_ADMIN" ||
-                  context.user.role === "ROLE_SYS_ADMIN")
-              }
-            />
-          }
-        >
-          <Route path="/admin/users" element={<AdminUsersView />} />
-        </Route>
-        <Route
-          element={
-            <ProtectedRoute
-              redirectPath="/"
-              isAllowed={
-                context.isLoggedIn && context.user.role === "ROLE_REGISTERED"
-              }
-            />
-          }
-        >
-          <Route path="/survey" element={<SurveyPage />} />
-        </Route>
+          <Route element={<ProtectedRoute isAllowed={context.isLoggedIn} />}>
+            <Route path="/user/:id" element={<ProfilePage />} />
+          </Route>
+          <Route
+            element={
+              <ProtectedRoute
+                isAllowed={
+                  context.isLoggedIn && context.user.role === "ROLE_SYS_ADMIN"
+                }
+                redirectPath={"/"}
+              />
+            }
+          >
+            {getSysAdminRoutes()}
+          </Route>
+          <Route
+            element={
+              <ProtectedRoute
+                redirectPath="/"
+                isAllowed={
+                  context.isLoggedIn &&
+                  (context.user.role === "ROLE_BLOOD_BANK_ADMIN" ||
+                    context.user.role === "ROLE_SYS_ADMIN")
+                }
+              />
+            }
+          >
+            <Route path="/admin/users" element={<AdminUsersView />} />
+          </Route>
+          <Route
+            element={
+              <ProtectedRoute
+                redirectPath="/"
+                isAllowed={
+                  context.isLoggedIn && context.user.role === "ROLE_REGISTERED"
+                }
+              />
+            }
+          >
+            <Route path="/my-calendar" element={<UserCalendar />} />
+            <Route path="/appointments/search" element={<SearchBankSlots />} />
+            <Route path="/survey" element={<SurveyPage />} />
+          </Route>
 
-        <Route
-          element={
-            <ProtectedRoute
-              redirectPath="/"
-              isAllowed={
-                context.isLoggedIn &&
-                context.user.role === "ROLE_BLOOD_BANK_ADMIN"
-              }
-            />
-          }
-        >
-          {getAllBloodBankRoutes()}
-        </Route>
+          <Route
+            element={
+              <ProtectedRoute
+                redirectPath="/"
+                isAllowed={
+                  context.isLoggedIn &&
+                  context.user.role === "ROLE_BLOOD_BANK_ADMIN"
+                }
+              />
+            }
+          >
+            {getAllBloodBankRoutes()}
+          </Route>
 
-        <Route
-          element={
-            <ProtectedRoute redirectPath="/" isAllowed={context.isLoggedIn} />
-          }
-        >
-          {getAllAuthenticatedRoutes()}
-        </Route>
-        <Route path="*" exact={true} component={<NotFoundPage />} />
-      </Routes>
-    </MainLayout>
+          <Route
+            element={
+              <ProtectedRoute redirectPath="/" isAllowed={context.isLoggedIn} />
+            }
+          >
+            {getAllAuthenticatedRoutes()}
+          </Route>
+          <Route path="*" exact={true} component={<NotFoundPage />} />
+        </Routes>
+        <ToastContainer />
+      </MainLayout>
+    </React.Fragment>
   );
 }
 

@@ -5,6 +5,11 @@ const RegisteredNavbar = (props) => {
   return (
     <React.Fragment>
       <div className="landing-navbar__item">
+        <NavLink to="/my-calendar" className={"navlink"}>
+          My calendar
+        </NavLink>
+      </div>
+      <div className="landing-navbar__item">
         <NavLink to="/blood-banks" className={"navlink"}>
           Find a donor center
         </NavLink>

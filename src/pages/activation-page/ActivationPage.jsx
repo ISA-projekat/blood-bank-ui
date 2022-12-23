@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router'
+import { toast } from 'react-toastify';
 import { activateAccount } from '../../services/user/UserService';
 import './ActivationPage.scss';
 
@@ -11,8 +12,16 @@ const ActivationPage = () => {
     const handleActivate = () => {
         console.log(email)
         activateAccount(email).then((response) => {
-            console.log('Response', response)
-            alert('Successfully activated account!');
+            toast.success("Account succesffully activated!", {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             navigate('/login')
         })
     }

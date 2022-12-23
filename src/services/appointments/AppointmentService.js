@@ -18,7 +18,11 @@ export async function getFreeAppointmentSlotsForBloodBank(dto) {
 }
 
 export async function getAppointmentsForUser(userId) {
-  return await request("/appointment/user/" + userId);
+  return await request("/appointment/user/" + userId + "/SCHEDULED");
+}
+
+export async function getFinishedAppointmentsForUser(userId) {
+  return await request("/appointment/user/" + userId + "/FINISHED");
 }
 
 export async function scheduleAppointment(dto) {
@@ -26,9 +30,16 @@ export async function scheduleAppointment(dto) {
 }
 
 export async function cancelAppointment(id) {
-  return await request("/appointment/cancel/" + id, HttpMethod.DELETE);
+  return await request("/appointment/cancel/" + id, {}, HttpMethod.DELETE);
 }
 
 export async function deleteSlot(id) {
   return await request("/appointment-slot/" + id, {}, HttpMethod.DELETE);
+}
+
+export async function searchFreeSlots(dto) {
+  console.log(dto);
+  return await request(
+    "/appointment-slot/available-slots" + makeParametersList(dto)
+  );
 }
