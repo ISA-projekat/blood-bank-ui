@@ -12,6 +12,8 @@ import { useContext } from 'react';
 import AuthContext from '../../store/bloodbank/login/login-context';
 import { getBloodBankId } from '../service/AdminService';
 import './AdminCalendarView.scss';
+import { useNavigate } from "react-router-dom";
+import { routes } from "../../constants/routes"
 
 
 const locales = {
@@ -52,6 +54,7 @@ const AdminCalendarView = () => {
     const [allEvents, setAllEvents] = useState(events);
     const [appointmentsCal,setAppointments] = useState([]);
     const [calendarItems,setCalendarItems] = useState([]);
+    const navigate = useNavigate();
    
     
     const context = useContext(AuthContext)
@@ -75,6 +78,7 @@ const AdminCalendarView = () => {
         let result = []
         appointments.forEach((app)=>{
             let singleItem = {
+                id: app.id,
                 title: app.firstName +" "+ app.lastName,
                 start: new Date(app.startDate[0], app.startDate[1]-1,app.startDate[2],app.startDate[3]),
                 end: new Date(app.endDate[0], app.endDate[1]-1,app.endDate[2],app.endDate[3])
@@ -85,6 +89,10 @@ const AdminCalendarView = () => {
         return result;
     }
 
+    const handleSelectEvent = (event) => {
+        navigate(`${routes.APPOINTMENT_PROCESSING_PATH}/${event.id}`);
+    };
+
     return (
         <div className='calendar-container'> 
         <div className='header'>
@@ -92,7 +100,7 @@ const AdminCalendarView = () => {
         </div>
         <div className='calendar-wrapper'>
             <Calendar localizer={localizer} events={appointmentsCal}
-             startAccessor="start" endAccessor="end"
+             startAccessor="start" endAccessor="end" onSelectEvent={handleSelectEvent}
                />
         </div>
         </div>
