@@ -10,6 +10,7 @@ import './SearchBankSlots.scss';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { toast } from 'react-toastify';
+import { getPage } from '../../../services/appointments/AppointmentService';
 
 const SearchBankSlots = () => {
 
@@ -20,10 +21,31 @@ const SearchBankSlots = () => {
     const [totalElements, setTotalElements] = useState(0);
     const [requestData, setRequestData] = useState(new Date());
     const [value, setValue] = React.useState([null, null]);
+    const [order, setOrder] = useState("asc");
+    const [sortActive, setSortActive] = useState(false)
+    const [sortState, setSortState] = useState("")
 
     useEffect(() => {
         handleSearch();
     }, [pagez, perPage])
+
+    const setupSort = (sortParam) => {
+        let sort = sortParam + ","
+        sort += order === "asc" ? "desc" : "asc"
+        setSortState(sort)
+        setSortActive(true);
+
+        return sort;
+    }
+
+    const onSortByRating = async () => {
+        const sort = setupSort("bloodBank.rating")
+        const response = await getPage(pagez, perPage, sort)
+
+        const value = order === "asc" ? "desc" : "asc"
+        setOrder(value);
+        setSlots(response.data.content);
+    }
 
     const getDate = (dateArray) => {
         let date = new Date(dateArray[0], dateArray[1], dateArray[2], dateArray[3], dateArray[4], 0);
@@ -151,7 +173,7 @@ const SearchBankSlots = () => {
                             <TableCell align='left' className='table-cell'>
                                 Address
                             </TableCell>
-                            <TableCell align='left' className='table-cell'>
+                            <TableCell align='left' className='table-cell' onClick={onSortByRating}>
                                 Rating
                             </TableCell>
                             <TableCell align='right' className='table-cell'>
