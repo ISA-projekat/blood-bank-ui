@@ -17,6 +17,13 @@
         width: 100%;
     }
 
+    &__button {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 1rem;
+        margin-bottom: 2rem;
+    }
+
     &__content {
         font-size: 2rem !important;
         height: 85%;
