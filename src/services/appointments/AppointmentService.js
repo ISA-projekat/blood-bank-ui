@@ -43,7 +43,7 @@ export async function searchFreeSlots(dto) {
     "/appointment-slot/available-slots" + makeParametersList(dto)
   );
 }
-
 export async function createSlot(dto) {
   return await request("appointment-slot/", dto, HttpMethod.POST);
 }
+
