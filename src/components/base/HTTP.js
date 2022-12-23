@@ -1,5 +1,6 @@
 import { ConstructionOutlined } from "@mui/icons-material";
 import axios from "axios";
+import { toast } from "react-toastify";
 import HttpMethod from "../../constants/HttpMethod";
 import history from "./../../history";
 
@@ -45,9 +46,27 @@ Axios.getInstance().interceptors.response.use(
     } else if (status === 403) {
       history.push("/error/forbidden");
     } else if (status === 401) {
-      history.push("/error/unauthorized");
+      toast.error("You are not authorized for this service", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     } else if (status === 400) {
-      history.push("/error/bad-request", { message: data.message });
+      toast.error(data.message, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
 
     return error;

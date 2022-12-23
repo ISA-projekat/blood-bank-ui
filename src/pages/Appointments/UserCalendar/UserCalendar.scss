@@ -1,0 +1,42 @@
+.calendar-container {
+    height: 100%;
+    background-color: #fff;
+    border-radius: .5rem;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 3rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .header {
+        font-size: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 15%;
+        width: 100%;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+        margin-bottom: 2rem;
+
+        .button-small {
+            border-radius: 0.5rem;
+            text-transform: capitalize;
+        }
+    }
+
+    .calendar-wrapper {
+        height: 80%;
+        width: 100%;
+
+        .rbc-calendar {
+            height: 100% !important;
+            width: 100%;
+        }
+    }
+}

@@ -6,6 +6,7 @@ import AuthContext from '../../../store/bloodbank/login/login-context'
 import {format} from 'date-fns';
 import './BloodBankSlots.scss';
 import { RepeatOneSharp } from '@mui/icons-material';
+import { toast } from 'react-toastify';
 
 const BloodBankSlots = () => {
 
@@ -59,6 +60,16 @@ const BloodBankSlots = () => {
 
     const deleteAppSlot = async (event, id) => {
         await deleteSlot(id).then((response) => {
+            toast.success("Slot deleted!", {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             setRequestData(new Date())
         })
     }
@@ -68,7 +79,16 @@ const BloodBankSlots = () => {
             if (!response || !response.ok) {
                 return;
             }
-            alert("Appointment successfully scheduled")
+            toast.success("Appointment successfully scheduled!", {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             setRequestData(new Date());
         })
     }
