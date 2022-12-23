@@ -6,7 +6,7 @@ let logoutTimer;
 const AuthContext = React.createContext({
   token: "",
   isLoggedIn: false,
-  role: "",
+  user: null,
   login: (token) => {},
   logout: () => {},
 });
@@ -42,6 +42,7 @@ const retriveUserFromToken = (token) => {
     sub: decoded.sub,
     role: decoded.role[0].authority,
     id: decoded.id,
+    firstTime: decoded.firstTime
   };
 
   console.log("User", user);
@@ -64,7 +65,7 @@ export const AuthContextProvider = (props) => {
 
   const logoutHandler = useCallback(() => {
     setToken(null);
-    setUser({ sub: "", role: "", id: 0 });
+    setUser({ sub: "", role: "", id: 0, firtTime: false });
     localStorage.removeItem("token");
     localStorage.removeItem("expires");
 

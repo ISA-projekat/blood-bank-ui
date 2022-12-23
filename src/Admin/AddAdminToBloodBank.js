@@ -40,7 +40,7 @@ const AddAdminToBloodBank = () => {
     async function confirm() {
         const admId = parseInt(adminId);
         let dto = {bloodBankId:bloodBankId,administratorId:admId};
-        //const reponse = await addAdminToBloodBank(dto);
+        const reponse = await addAdminToBloodBank(dto);
         console.log(dto)
         navigate("/");
       }

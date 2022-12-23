@@ -6,6 +6,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import TextFieldControl from '../../components/forms/controls/TextFieldControl';
 import FormRules from '../../components/forms/rules/FormRules';
 import { Button } from "@mui/material";
+import { useContext } from 'react';
+import AuthContext from '../../store/bloodbank/login/login-context';
 
 const BloodBanksPage = () => {
 
@@ -14,6 +16,8 @@ const BloodBanksPage = () => {
     const [page, setPage] = useState({})
     const [sortActive, setSortActive] = useState(false)
     const [sortState, setSortState] = useState("")
+
+    const context = useContext(AuthContext);
 
     useEffect(() => {
         fetchData();
