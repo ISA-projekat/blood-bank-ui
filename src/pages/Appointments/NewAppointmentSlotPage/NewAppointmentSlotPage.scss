@@ -1,8 +1,48 @@
 .new-slot-container {
-    height: 80%;
+    height: 60%;
     background-color: #fff;
     border-radius: .5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    width: 80%;
+    width: 40%;
     padding: 2rem 10rem;
+
+    .header {
+        font-size: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 15%;
+        width: 100%;
+        margin-bottom: 5rem;
+    }
+
+    .form-wrapper-bb-form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 80%;
+    }
+
+    .blood-bank-form {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        width: 80%;
+    }
+
+    .df {
+        display: flex;
+        justify-content: center;
+    }
+
+    .item {
+        width: 100%;
+        align-self: center;
+        margin-bottom: 3rem;
+
+        .orange-button {
+            padding: 1rem 3rem;
+            margin-top: 0rem;
+        }
+    }
 }

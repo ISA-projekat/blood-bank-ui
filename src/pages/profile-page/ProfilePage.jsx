@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import { getById } from "../../services/user/UserService";
 
 export default function ProfilePage() {
     const { id } = useParams();
@@ -19,17 +20,19 @@ export default function ProfilePage() {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/user/${id}`)
-        .then(res => res.json())
-        .then(data => {
-            setFirstName(data.firstName);
-            setLastName(data.lastName);
-            setPhoneNumber(data.phoneNumber);
-            setOccupation(data.occupation);
-            setEmail(data.email);
-            setUser(data);
-        })
+        fetchData();
     }, [id]);
+
+    const fetchData = async () => {
+        const response = await getById(id);
+
+        setFirstName(response.data.firstName);
+        setLastName(response.data.lastName);
+        setPhoneNumber(response.data.phoneNumber);
+        setOccupation(response.data.occupation);
+        setEmail(response.data.email);
+        setUser(response.data);
+    }
 
     const onEditPress = () => {
         setIsEditing(!isEditing);

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../../store/bloodbank/login/login-context";
 
 const RegisteredNavbar = (props) => {
+  const context = useContext(AuthContext);
+
+  const getLink = () => {
+    return "user/" + context.user.id;
+  };
+
   return (
     <React.Fragment>
       <div className="landing-navbar__item">
@@ -20,7 +27,7 @@ const RegisteredNavbar = (props) => {
         </NavLink>
       </div>
       <div className="landing-navbar__item">
-        <NavLink to="/profile" className={"navlink"}>
+        <NavLink to={getLink()} className={"navlink"}>
           My profile
         </NavLink>
       </div>

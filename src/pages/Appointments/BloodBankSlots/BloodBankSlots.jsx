@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { deleteSlot, getAppointmentsForBloodBank, getAppointmentSlotsForBloodBank, getFreeAppointmentSlotsForBloodBank, scheduleAppointment } from '../../../services/appointments/AppointmentService';
 import AuthContext from '../../../store/bloodbank/login/login-context'
 import {format} from 'date-fns';
@@ -12,6 +12,7 @@ const BloodBankSlots = () => {
 
     const context = useContext(AuthContext);
     const params = useParams();
+    const navigate = useNavigate();
     const [slots, setSlots] = useState([]);
     const [page, setPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
@@ -93,6 +94,10 @@ const BloodBankSlots = () => {
         })
     }
 
+    const navigateTo = () => {
+        navigate('/new-slot');
+    }
+
     const renderTableRows = () => {
         let result = [];
 
@@ -132,6 +137,9 @@ const BloodBankSlots = () => {
         <div className='slots__header'>
             Appointment Slots
         </div>
+        {context.user.role === 'ROLE_BLOOD_BANK_ADMIN' && <div className='slots__button'>
+            <button className='button-small bg-orange' onClick={navigateTo}>Schedule</button>
+        </div>}
         <div className='slots__content'>
             <TableContainer className='slots__content-container'>
                 <Table className='slots__content-container-table' sx={{fontSize: '2rem'}}>

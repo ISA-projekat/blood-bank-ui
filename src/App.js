@@ -103,6 +103,7 @@ function App() {
           element={<BloodBankDetailsPage />}
         />
         <Route path="/admin/calendar" element={<AdminCalendarView />} />
+        <Route path="/new-slot" element={<NewAppointmentSlotPage />} />
       </React.Fragment>
     );
   };
