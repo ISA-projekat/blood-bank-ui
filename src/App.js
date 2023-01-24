@@ -35,6 +35,7 @@ import FirstLoginPage from "./pages/first-login-redirect-page/FirstLoginPage";
 import SearchBankSlots from "./pages/Appointments/SearchBankSlots/SearchBankSlots";
 import UserCalendar from "./pages/Appointments/UserCalendar/UserCalendar";
 import "react-toastify/scss/main.scss";
+import DonatorsPage from "./components/DonatorsPage/DonatorsPage";
 
 function App() {
   const context = useContext(AuthContext);
@@ -103,13 +104,10 @@ function App() {
           path={routes.BLOOD_BANK_DETAILS}
           element={<BloodBankDetailsPage />}
         />
-        <Route
-          exact
-          path={"/admin/redirect"}
-          element={<FirstLoginPage/>}
-        />
+        <Route exact path={"/admin/redirect"} element={<FirstLoginPage />} />
         <Route path="/admin/calendar" element={<AdminCalendarView />} />
         <Route path="/new-slot" element={<NewAppointmentSlotPage />} />
+        <Route path="/admin/donators/:bloodBankId" element={<DonatorsPage />} />
       </React.Fragment>
     );
   };

@@ -32,6 +32,14 @@ const BloodBankAdminNavbar = (props) => {
     return "/admin/users";
   };
 
+  const getProfileLink = () => {
+    return "/user/" + context.user.id;
+  };
+
+  const getDonatorsLink = () => {
+    return "/admin/donators/" + bloodBankId;
+  };
+
   return (
     <React.Fragment>
       <div className="landing-navbar__item">
@@ -50,8 +58,18 @@ const BloodBankAdminNavbar = (props) => {
         </NavLink>
       </div>
       <div className="landing-navbar__item">
+        <NavLink to={getDonatorsLink()} className={"navlink"}>
+          Donators
+        </NavLink>
+      </div>
+      <div className="landing-navbar__item">
         <NavLink to={getLink()} className={"navlink"}>
           My blood bank
+        </NavLink>
+      </div>
+      <div className="landing-navbar__item">
+        <NavLink to={getProfileLink()} className={"navlink"}>
+          My profile
         </NavLink>
       </div>
       <div className="landing-navbar__item">
