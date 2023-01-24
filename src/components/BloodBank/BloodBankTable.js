@@ -70,55 +70,62 @@ const BloodBankTable = ({
     }
 
     return (
-      <TableContainer className="fs">
-        <Table sx={{ minWidth: 800 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell onClick={sortByName} className="cursor-pointer">
-                <b>Name</b>
-              </TableCell>
-              <TableCell
-                align="right"
-                onClick={sortByStreet}
-                className="cursor-pointer"
-              >
-                <b>Street</b>
-              </TableCell>
-              <TableCell
-                align="right"
-                onClick={sortByCity}
-                className="cursor-pointer"
-              >
-                <b>City</b>
-              </TableCell>
-              <TableCell align="right">
-                <b>Country</b>
-              </TableCell>
-              <TableCell
-                align="right"
-                onClick={sortByGrade}
-                className="cursor-pointer"
-              >
-                <b>Rating</b>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>{renderTableData(data)}</TableBody>
+      <div className="blood-banks__table">
+        <TableContainer className="fs blood-banks__table-content">
+          <Table
+            sx={{ minWidth: 800 }}
+            aria-label="simple table"
+            className={"blood-banks__table-content-table"}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell onClick={sortByName} className="cursor-pointer">
+                  <b>Name</b>
+                </TableCell>
+                <TableCell
+                  align="right"
+                  onClick={sortByStreet}
+                  className="cursor-pointer"
+                >
+                  <b>Street</b>
+                </TableCell>
+                <TableCell
+                  align="right"
+                  onClick={sortByCity}
+                  className="cursor-pointer"
+                >
+                  <b>City</b>
+                </TableCell>
+                <TableCell align="right">
+                  <b>Country</b>
+                </TableCell>
+                <TableCell
+                  align="right"
+                  onClick={sortByGrade}
+                  className="cursor-pointer"
+                >
+                  <b>Rating</b>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>{renderTableData(data)}</TableBody>
+          </Table>
           <TablePagination
+            className={"blood-banks__table-content-pagination"}
             sx={{ minWidth: "100%" }}
             onPageChange={onPageChange}
             count={page.totalElements}
             rowsPerPage={page.size}
             page={page.number}
           />
-        </Table>
-      </TableContainer>
+        </TableContainer>
+      </div>
     );
   };
 
   const handlePageChangeSort = (page, sort) => {};
 
-  return <div>{renderTable(rows)}</div>;
+  return renderTable(rows);
 };
 
 export default BloodBankTable;

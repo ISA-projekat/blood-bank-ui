@@ -32,8 +32,17 @@ const BloodBankAdminNavbar = (props) => {
     return "/admin/users";
   };
 
+  const getMapLink = () => {
+    return "/admin/map";
+  };
+
   return (
     <React.Fragment>
+      <div className="landing-navbar__item">
+        <NavLink to={getMapLink()} className={"navlink"}>
+          Map
+        </NavLink>
+      </div>
       <div className="landing-navbar__item">
         <NavLink to={getAppHistoryLink()} className={"navlink"}>
           Appointment history
@@ -56,7 +65,7 @@ const BloodBankAdminNavbar = (props) => {
       </div>
       <div className="landing-navbar__item">
         <button
-          className="orange-button"
+          className="button bg-orange"
           style={{ marginTop: "0rem", padding: "0.5rem 1rem" }}
           onClick={props.handleLogout}
         >

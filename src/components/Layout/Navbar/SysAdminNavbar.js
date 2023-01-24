@@ -26,7 +26,7 @@ const SysAdminNavbar = (props) => {
       </div>
       <div className="landing-navbar__item">
         <button
-          className="orange-button"
+          className="button bg-orange"
           style={{ marginTop: "0rem", padding: "0.5rem 1rem" }}
           onClick={props.handleLogout}
         >

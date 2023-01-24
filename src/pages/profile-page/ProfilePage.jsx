@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import PageLayout from "../../components/Layout/MainLayout/PageLayout";
 import { getById } from "../../services/user/UserService";
 
 export default function ProfilePage() {
@@ -77,7 +78,7 @@ export default function ProfilePage() {
     }
 
     return(
-        <div>
+        <PageLayout>
             <form onSubmit={(e) => onSubmitEdit(e)}>
                 <label>
                     Email:
@@ -118,6 +119,6 @@ export default function ProfilePage() {
             </form>
             <button onClick={() => {onEditPress()}}>Edit</button>
 
-        </div>
+        </PageLayout>
     );
 }

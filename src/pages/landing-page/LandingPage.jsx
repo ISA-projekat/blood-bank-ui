@@ -26,7 +26,7 @@ export default function LandingPage() {
     
     const response = await CheckIfFirstLoginCompleted(context.user.sub);
     
-    if(response.data == false){
+    if(response.data === false){
       navigate("/admin/redirect")
     }
     
