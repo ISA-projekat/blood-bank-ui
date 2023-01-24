@@ -6,6 +6,13 @@ export type Address = {
   number: string;
 };
 
+export type UserDto = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  donationDate: string;
+};
+
 export type User = {
   id?: number;
   email: string;
