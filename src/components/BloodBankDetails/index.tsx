@@ -1,10 +1,22 @@
 import { useFormik } from "formik";
 import { idText } from "typescript";
 import { useBookDetailsContext } from "../../store/bloodbank/details/BloodBankDetailsContext";
+import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import "./BloodBankDetails.css";
+import { useEffect, useState } from "react";
+import L from "leaflet";
+
+let DefaultIcon = L.icon({
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 const BloodBankDetails = () => {
   const { bloodBank, updateBloodBank } = useBookDetailsContext();
+  const [refreshKey, setRefreshKey] = useState<number>(0);
 
   const formik = useFormik({
     initialValues: {
@@ -16,6 +28,8 @@ const BloodBankDetails = () => {
       city: bloodBank?.address.city || "",
       street: bloodBank?.address.street || "",
       number: bloodBank?.address.number || "",
+      longitude: bloodBank?.address.longitude || "",
+      latitude: bloodBank?.address.latitude || "",
     },
     onSubmit: (values) => {
       updateBloodBank?.({ ...values, address: { ...values } });
@@ -23,6 +37,16 @@ const BloodBankDetails = () => {
     },
     enableReinitialize: true,
   });
+
+  const longitude = Number(formik.values.longitude || "");
+  const latitude = Number(formik.values.latitude || "");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setRefreshKey(refreshKey + 1);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="blood-bank-details-wrapper">
@@ -97,6 +121,25 @@ const BloodBankDetails = () => {
           <button type="submit">Submit</button>
         </div>
       </form>
+      <div className="map-div">
+        <MapContainer
+          center={[latitude, longitude]}
+          zoom={13}
+          scrollWheelZoom={false}
+          key={refreshKey}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[latitude, longitude]}>
+            <Popup>
+              {formik.values.street} {formik.values.number},{" "}
+              {formik.values.city},{formik.values.country}
+            </Popup>
+          </Marker>
+        </MapContainer>
+      </div>
     </div>
   );
 };
