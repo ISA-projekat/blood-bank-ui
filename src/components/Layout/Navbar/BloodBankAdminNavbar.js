@@ -35,7 +35,7 @@ const BloodBankAdminNavbar = (props) => {
   const getMapLink = () => {
     return "/admin/map";
   };
-  
+
   const getProfileLink = () => {
     return "/user/" + context.user.id;
   };
@@ -54,11 +54,6 @@ const BloodBankAdminNavbar = (props) => {
       <div className="landing-navbar__item">
         <NavLink to={getAppHistoryLink()} className={"navlink"}>
           Appointment history
-        </NavLink>
-      </div>
-      <div className="landing-navbar__item">
-        <NavLink to={getAppSlotsLink()} className={"navlink"}>
-          Appointment slots
         </NavLink>
       </div>
       <div className="landing-navbar__item">

@@ -8,11 +8,8 @@ import { useEffect, useState } from "react";
 import L from "leaflet";
 
 let DefaultIcon = L.icon({
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+  iconUrl: require("../../assets/img/bbank2.png")
 });
-
-L.Marker.prototype.options.icon = DefaultIcon;
 
 const BloodBankDetails = () => {
   const { bloodBank, updateBloodBank } = useBookDetailsContext();
@@ -50,6 +47,7 @@ const BloodBankDetails = () => {
 
   return (
     <div className="blood-bank-details-wrapper">
+      <div className="wrapper-form">
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="name">Name: </label>
         <input
@@ -118,9 +116,10 @@ const BloodBankDetails = () => {
           })}
         </ul>
         <div className="button-div">
-          <button type="submit">Submit</button>
+          <button type="submit" className="button-small bg-orange">Submit</button>
         </div>
       </form>
+      </div>
       <div className="map-div">
         <MapContainer
           center={[latitude, longitude]}
@@ -132,7 +131,7 @@ const BloodBankDetails = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[latitude, longitude]}>
+          <Marker position={[latitude, longitude]} icon={DefaultIcon}>
             <Popup>
               {formik.values.street} {formik.values.number},{" "}
               {formik.values.city},{formik.values.country}
