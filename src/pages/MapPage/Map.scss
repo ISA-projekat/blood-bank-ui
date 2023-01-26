@@ -1,0 +1,105 @@
+@import './../../sass/main.scss';
+
+.map-container {
+    height: 95%;
+    width: 80%;
+    padding: 2rem 5rem;
+    display: flex;
+    justify-content: space-between;
+
+    .map {
+        height: 100%;
+        width: 100%;
+        border: 1px solid #a4a4e8;
+        border-radius: 5px;
+    }
+
+    .leaflet-container {
+        height: 100%;
+    }
+
+    &__map {
+        height: 100%;
+        width: 70%;
+    }
+
+    &__form {
+        height: 100%;
+        width: 25%;
+        box-sizing: border-box;
+        padding: 0rem 1rem;
+
+        .delivery {
+
+            display: flex; 
+            flex-direction: column;
+            height: 95%;
+
+            &__header {
+                display: flex; 
+                justify-content: center;
+                align-items: center;
+                font-size: 1.7rem;
+                height: 15%;
+                margin-bottom: 3%;
+            }
+
+            &__body {
+                height: 80%;
+                width: 100%;
+
+                &-autocomplete {
+                    height: 12%;
+                    width: 100%;
+                    margin-bottom: 10%;
+                }
+
+                &-button {
+                    height: 12%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .button-small {
+                    padding: 1rem 3rem;
+                    background: #7F7FD5;
+                }
+            }
+        }
+    }
+}
+
+.text-field-control-wrapper {
+
+    .MuiFormControl-root {
+        margin-top: .8rem;
+    }
+
+    fieldset {
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid $control-primary;
+    }
+
+    label {
+        color: $label;
+        left: -1.4rem;
+
+        &.Mui-focused {
+            color: $label
+        }
+    }
+
+    input {
+        color: $label;
+        padding-left: 0rem;
+    }
+
+    .Mui-focused {
+        fieldset {
+            border-color: $control-primary !important;
+        }
+    }
+}

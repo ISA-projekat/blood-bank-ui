@@ -8,6 +8,7 @@ import FormRules from '../../components/forms/rules/FormRules';
 import { Button } from "@mui/material";
 import { useContext } from 'react';
 import AuthContext from '../../store/bloodbank/login/login-context';
+import PageLayout from '../../components/Layout/MainLayout/PageLayout';
 
 const BloodBanksPage = () => {
 
@@ -131,7 +132,7 @@ const BloodBanksPage = () => {
     }
 
     return (
-            <div className='blood-banks'>
+            <PageLayout class={'blood-banks'}>
                 <div className='blood-banks__header'>
                     <h1>Blood bank overview</h1>
                 </div>
@@ -156,7 +157,7 @@ const BloodBanksPage = () => {
                             </div>
                             <div className="search-submit-container">
                             <Button onClick={handleSubmit(onSearch)}
-                                    className="orange-button btn-submit mr-5"
+                                    className="button bg-orange btn-submit mr-5"
                             > Search</Button>
                             </div>
                         </div>
@@ -190,21 +191,19 @@ const BloodBanksPage = () => {
                         </div>
                         <div className="search-submit-container">
                             <Button onClick={handleSubmit(handleFilter)}
-                                    className="orange-button btn-submit"
+                                    className="button bg-orange btn-submit"
                             > Filter</Button>
                         </div>
                         <div className="search-submit-container">
                             <Button onClick={handleReset}
-                                    className="orange-button btn-submit"
+                                    className="button bg-orange btn-submit"
                             > Reset</Button>
                         </div>
                         </FormProvider>
                     </div>
                 </div>
-                <div className='blood-banks__table'>
-                    <BloodBankTable rows = {bloodBanks} sortByName={onSortByName} sortByCity={onSortByCity} sortByStreet={onSortByStreet} sortByGrade={onSortByGrade} onPageChange={onPageChange} page={page}/>
-                </div>
-            </div>
+                <BloodBankTable rows = {bloodBanks} sortByName={onSortByName} sortByCity={onSortByCity} sortByStreet={onSortByStreet} sortByGrade={onSortByGrade} onPageChange={onPageChange} page={page}/>
+            </PageLayout>
     )
 }
 

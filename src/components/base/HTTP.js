@@ -42,7 +42,6 @@ Axios.getInstance().interceptors.response.use(
     if (status === 404) {
       history.push("/error/not-found", { message: data.message });
     } else if (status === 500) {
-      history.push("/error/internal-server-error");
     } else if (status === 403) {
       history.push("/error/forbidden");
     } else if (status === 401) {

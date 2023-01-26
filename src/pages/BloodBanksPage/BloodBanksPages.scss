@@ -1,16 +1,12 @@
 .blood-banks {
-    height: 100%;
-    background-color: #fff;
-    border-radius: .5rem;
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 3rem 5rem;
+    padding: 2rem 5rem !important;
 
     &__header {
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 3rem;
+        height: 10%;
     }
 
     &__filter {
@@ -18,6 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: 10%;
 
         &-filter {
             display: flex;
@@ -43,7 +40,26 @@
         }
     }
 
-    &__table {
+    &__table{
+        font-size: 2rem !important;
+        height: 70%;
+        
+        &-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+        
+            &-table {
+                width: 100%;
+            }
+        
+            &-pagination {
+                width: 100%;
+            }
+        }
 
+        
     }
 }

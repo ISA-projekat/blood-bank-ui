@@ -1,12 +1,13 @@
 import React from 'react'
 import './LoginPage.scss'
 import LoginForm from '../../components/forms/LoginForm';
+import PageLayout from '../../components/Layout/MainLayout/PageLayout';
 
 const LoginPage = () => {
 
 
     return (
-        <div className='login-container'>
+        <PageLayout class={'login-container'}>
             <div className='login-content'>
                 <div className='form-container'>
                     <div className='login-content__form'>
@@ -20,7 +21,7 @@ const LoginPage = () => {
 
                 </div>
             </div>
-        </div>
+        </PageLayout>
     );
 };
 

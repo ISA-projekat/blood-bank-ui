@@ -11,6 +11,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { toast } from 'react-toastify';
 import { getPage } from '../../../services/appointments/AppointmentService';
+import PageLayout from '../../../components/Layout/MainLayout/PageLayout';
 
 const SearchBankSlots = () => {
 
@@ -134,7 +135,7 @@ const SearchBankSlots = () => {
     }
 
     return (
-       <div className='slots'>
+       <PageLayout class={'slots'}>
         <div className='slots__header'>
             Find available slot
         </div>
@@ -196,7 +197,7 @@ const SearchBankSlots = () => {
                         />
             </TableContainer>
         </div>
-    </div> 
+    </PageLayout> 
     )
 }
 

@@ -55,3 +55,7 @@ export async function getPage(page, size = 2, sort = "") {
   };
   return await request("/appointment-slot/page" + makeParametersList(dto));
 }
+
+export async function getFinishedAppointments(dto) {
+  return await request("/appointment/user/finished" + makeParametersList(dto));
+}

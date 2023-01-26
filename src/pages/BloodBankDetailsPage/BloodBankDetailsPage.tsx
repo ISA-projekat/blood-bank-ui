@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import BloodBankDetails from "../../components/BloodBankDetails";
+import PageLayout from "../../components/Layout/MainLayout/PageLayout";
 import BloodBankDetailsContextProvider from "../../store/bloodbank/details/BloodBankDetailsContext";
 
 const BloodBankDetailsPage = () => {
@@ -7,7 +8,9 @@ const BloodBankDetailsPage = () => {
 
   return (
     <BloodBankDetailsContextProvider id={parseInt(id || "0", 10)}>
-      <BloodBankDetails />
+      <PageLayout>
+        <BloodBankDetails />
+      </PageLayout>
     </BloodBankDetailsContextProvider>
   );
 };

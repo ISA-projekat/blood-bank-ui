@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { toast } from 'react-toastify';
+import PageLayout from '../../components/Layout/MainLayout/PageLayout';
 import { activateAccount } from '../../services/user/UserService';
 import './ActivationPage.scss';
 
@@ -27,10 +28,10 @@ const ActivationPage = () => {
     }
 
     return (
-        <div className='activation-container'>
+        <PageLayout class={'activation-container'}>
             <h1>Activate your account by clicking on this link</h1>
-            <button className='orange-button btn-submit' onClick={handleActivate}>Activate</button>
-        </div>)
+            <button className='button btn-submit bg-orange' onClick={handleActivate}>Activate</button>
+        </PageLayout>)
 }
 
 export default ActivationPage;

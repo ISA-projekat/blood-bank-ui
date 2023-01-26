@@ -7,6 +7,7 @@ import {format} from 'date-fns';
 import './BloodBankSlots.scss';
 import { RepeatOneSharp } from '@mui/icons-material';
 import { toast } from 'react-toastify';
+import PageLayout from '../../../components/Layout/MainLayout/PageLayout';
 
 const BloodBankSlots = () => {
 
@@ -130,10 +131,10 @@ const BloodBankSlots = () => {
     }
 
     if (!slots || slots.length === 0) {
-        return <div className="message">There are no appointments available...</div>;
+        return <PageLayout class={'slots'}><div className="message">There are no appointments available...</div></PageLayout>;
     }
 
-    return (<div className='slots'>
+    return (<PageLayout class={'slots'}>
         <div className='slots__header'>
             Appointment Slots
         </div>
@@ -173,7 +174,7 @@ const BloodBankSlots = () => {
                         onPageChange={handlePageChange}/>
             </TableContainer>
         </div>
-    </div>)
+    </PageLayout>)
 }
 
 export default BloodBankSlots;
