@@ -16,6 +16,7 @@ export default function ProfilePage() {
     const [email, setEmail] = useState("");
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [penalties, setPenalties] = useState(0);
     const [user, setUser] = useState({});
     
     const [isEditing, setIsEditing] = useState(false);
@@ -31,6 +32,7 @@ export default function ProfilePage() {
         setLastName(response.data.lastName);
         setPhoneNumber(response.data.phoneNumber);
         setOccupation(response.data.occupation);
+        setPenalties(response.data.penalties)
         setEmail(response.data.email);
         setUser(response.data);
     }
@@ -114,6 +116,8 @@ export default function ProfilePage() {
                     New password:
                     <input type={"password"} onChange={(e) => {setNewPassword(e.target.value)}} disabled={!isEditing} />
                 </label><br /></>)}
+
+                {user && (<><p>{"You have " + penalties + " penalties this month."}</p></>)}
 
                 <input type={"submit"} value={"Submit"} disabled={!isEditing} />
             </form>
