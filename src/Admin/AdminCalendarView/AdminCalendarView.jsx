@@ -54,6 +54,7 @@ const AdminCalendarView = () => {
     const [allEvents, setAllEvents] = useState(events);
     const [appointmentsCal,setAppointments] = useState([]);
     const [calendarItems,setCalendarItems] = useState([]);
+    const [bankId, setBankId] = useState(-1)
     const navigate = useNavigate();
    
     
@@ -67,6 +68,7 @@ const AdminCalendarView = () => {
     const fetchData = async () => {
         
         const bankId = await getBloodBankId(context.user.id)
+        setBankId(bankId.data);
         const response = await getByBloodBank(bankId.data);
         const result = makeCalendarItems(response.data)
         setAppointments(result);
@@ -93,10 +95,17 @@ const AdminCalendarView = () => {
         navigate(`${routes.APPOINTMENT_PROCESSING_PATH}/${event.id}`);
     };
 
+    const handleSlots = () => {
+        navigate('/blood-bank/appointments/' + bankId)
+    }
+
     return (
         <div className='calendar-container'> 
         <div className='header'>
             Work calendar
+        </div>
+        <div className='button-group'>
+            <button className='button-small bg-orange' onClick={handleSlots}>Appointment slots</button>
         </div>
         <div className='calendar-wrapper'>
             <Calendar localizer={localizer} events={appointmentsCal}
