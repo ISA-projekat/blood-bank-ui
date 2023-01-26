@@ -4,6 +4,15 @@ export type Address = {
   city: string;
   street: string;
   number: string;
+  longitude: number;
+  latitude: number;
+};
+
+export type UserDto = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  donationDate: string;
 };
 
 export type User = {

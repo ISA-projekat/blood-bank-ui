@@ -37,6 +37,7 @@ import UserCalendar from "./pages/Appointments/UserCalendar/UserCalendar";
 import "react-toastify/scss/main.scss";
 import MapPage from "./pages/MapPage/MapPage";
 import AppointmentHistoryPage from "./pages/Appointments/AppointmentHistory/AppointmentHistoryPage";
+import DonatorsPage from "./components/DonatorsPage/DonatorsPage";
 
 function App() {
   const context = useContext(AuthContext);
@@ -109,6 +110,7 @@ function App() {
         <Route path="/admin/calendar" element={<AdminCalendarView />} />
         <Route path="/new-slot" element={<NewAppointmentSlotPage />} />
         <Route path="/admin/map" element={<MapPage />} />
+        <Route path="/admin/donators/:bloodBankId" element={<DonatorsPage />} />
       </React.Fragment>
     );
   };
