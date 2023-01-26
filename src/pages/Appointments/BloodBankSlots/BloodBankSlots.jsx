@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router';
-import { deleteSlot, getAppointmentsForBloodBank, getAppointmentSlotsForBloodBank, getFreeAppointmentSlotsForBloodBank, scheduleAppointment } from '../../../services/appointments/AppointmentService';
+import { deleteSlot, getAppointmentsForBloodBank, getAppointmentSlotsForBloodBank, getFreeAppointmentSlotsForBloodBank, scheduleAppointment, generateQR } from '../../../services/appointments/AppointmentService';
 import AuthContext from '../../../store/bloodbank/login/login-context'
 import {format} from 'date-fns';
 import './BloodBankSlots.scss';
@@ -91,6 +91,26 @@ const BloodBankSlots = () => {
                 theme: "colored",
             });
             setRequestData(new Date());
+            generateQRForAppointment();
+        })
+    }
+
+    const generateQRForAppointment = async () => {
+        await generateQR().then((response) => {
+            if (!response || !response.ok) {
+                console.log("OVDEE SAM STIGAO")
+                return;
+            }
+            toast.success("Email succesfully sent!", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         })
     }
 
@@ -173,6 +193,7 @@ const BloodBankSlots = () => {
                         onPageChange={handlePageChange}/>
             </TableContainer>
         </div>
+       
     </div>)
 }
 
