@@ -1,346 +1,205 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import SockJsClient from 'react-stomp';
+
 import PageLayout from '../../components/Layout/MainLayout/PageLayout';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet'
 import './Map.scss';
 
-import icon from 'leaflet/dist/images/marker-icon.png';
+import icon from '../../assets/img/delivery.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import iconbb from '../../assets/img/bbank2.png';
+import hospitalicon from '../../assets/img/hospitaldel1.png';
 import L from 'leaflet';
+
+import { Autocomplete, TextField } from '@mui/material';
+
+import { toast } from "react-toastify";
+import { startDelivery } from '../../services/blood-bank/DeliveryService';
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
-    shadowUrl: iconShadow
 });
+
+let IconBb = L.icon({
+  iconUrl: iconbb
+})
+
+let HospitalBb = L.icon({
+  iconUrl: hospitalicon
+})
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
 const position = [45.240330, 19.797357];
-const positions = [
-                    [
-                        19.79696,
-                        45.240356
-                    ],
-                    [
-                        19.798718,
-                        45.240199
-                    ],
-                    [
-                        19.798878,
-                        45.240938
-                    ],
-                    [
-                        19.798886,
-                        45.240978
-                    ],
-                    [
-                        19.800668,
-                        45.240811
-                    ],
-                    [
-                        19.800825,
-                        45.241556
-                    ],
-                    [
-                        19.800829,
-                        45.241581
-                    ],
-                    [
-                        19.800844,
-                        45.241669
-                    ],
-                    [
-                        19.801025,
-                        45.241651
-                    ],
-                    [
-                        19.802512,
-                        45.241509
-                    ],
-                    [
-                        19.80271,
-                        45.24149
-                    ],
-                    [
-                        19.802755,
-                        45.241486
-                    ],
-                    [
-                        19.802865,
-                        45.241476
-                    ],
-                    [
-                        19.802913,
-                        45.241471
-                    ],
-                    [
-                        19.803069,
-                        45.241456
-                    ],
-                    [
-                        19.803177,
-                        45.241446
-                    ],
-                    [
-                        19.80398,
-                        45.241367
-                    ],
-                    [
-                        19.806873,
-                        45.241083
-                    ],
-                    [
-                        19.806913,
-                        45.241079
-                    ],
-                    [
-                        19.807123,
-                        45.241057
-                    ],
-                    [
-                        19.807329,
-                        45.241037
-                    ],
-                    [
-                        19.809057,
-                        45.240867
-                    ],
-                    [
-                        19.80922,
-                        45.240849
-                    ],
-                    [
-                        19.811002,
-                        45.240675
-                    ],
-                    [
-                        19.811131,
-                        45.240663
-                    ],
-                    [
-                        19.81129,
-                        45.240647
-                    ],
-                    [
-                        19.811413,
-                        45.240635
-                    ],
-                    [
-                        19.811583,
-                        45.240618
-                    ],
-                    [
-                        19.811634,
-                        45.240613
-                    ],
-                    [
-                        19.812102,
-                        45.240567
-                    ],
-                    [
-                        19.813165,
-                        45.240462
-                    ],
-                    [
-                        19.813214,
-                        45.240457
-                    ],
-                    [
-                        19.813375,
-                        45.240442
-                    ],
-                    [
-                        19.816036,
-                        45.240179
-                    ],
-                    [
-                        19.816241,
-                        45.240159
-                    ],
-                    [
-                        19.816454,
-                        45.240139
-                    ],
-                    [
-                        19.819736,
-                        45.239818
-                    ],
-                    [
-                        19.819926,
-                        45.2398
-                    ],
-                    [
-                        19.820435,
-                        45.23975
-                    ],
-                    [
-                        19.82073,
-                        45.239721
-                    ],
-                    [
-                        19.821022,
-                        45.239693
-                    ],
-                    [
-                        19.82224,
-                        45.239574
-                    ],
-                    [
-                        19.822303,
-                        45.239562
-                    ],
-                    [
-                        19.822384,
-                        45.239546
-                    ],
-                    [
-                        19.822507,
-                        45.239522
-                    ],
-                    [
-                        19.822518,
-                        45.239503
-                    ],
-                    [
-                        19.822531,
-                        45.239486
-                    ],
-                    [
-                        19.822559,
-                        45.239459
-                    ],
-                    [
-                        19.822676,
-                        45.239405
-                    ],
-                    [
-                        19.822816,
-                        45.239401
-                    ],
-                    [
-                        19.822861,
-                        45.239411
-                    ],
-                    [
-                        19.822901,
-                        45.239426
-                    ],
-                    [
-                        19.823025,
-                        45.239471
-                    ],
-                    [
-                        19.823195,
-                        45.239495
-                    ],
-                    [
-                        19.823306,
-                        45.239504
-                    ],
-                    [
-                        19.823508,
-                        45.239516
-                    ],
-                    [
-                        19.823923,
-                        45.239541
-                    ],
-                    [
-                        19.824179,
-                        45.239569
-                    ],
-                    [
-                        19.82435,
-                        45.239596
-                    ],
-                    [
-                        19.825253,
-                        45.239804
-                    ],
-                    [
-                        19.82529,
-                        45.239813
-                    ],
-                    [
-                        19.825429,
-                        45.239848
-                    ],
-                    [
-                        19.825421,
-                        45.239939
-                    ],
-                    [
-                        19.825289,
-                        45.239907
-                    ],
-                    [
-                        19.825146,
-                        45.239873
-                    ],
-                    [
-                        19.824603,
-                        45.239743
-                    ],
-                    [
-                        19.824104,
-                        45.239665
-                    ],
-                    [
-                        19.823845,
-                        45.239655
-                    ],
-                    [
-                        19.823485,
-                        45.239665
-                    ],
-                    [
-                        19.823341,
-                        45.239685
-                    ],
-                    [
-                        19.823146,
-                        45.239735
-                    ],
-                    [
-                        19.822975,
-                        45.2398
-                    ],
-                    [
-                        19.822834,
-                        45.239874
-                    ],
-                    [
-                        19.822768,
-                        45.239922
-                    ]
-                ]
+const SOCKET_URL = 'http://localhost:8080/socket';
+const partners = [
+  {
+    label: 'Care Connect',
+    value: [45.239908, 19.822748]
+  },
+  {
+    label: 'Hospital Hub',
+    value: [45.244573, 19.794183]
+  },
+  {
+    label: 'General Hospital',
+    value: [45.247815, 19.810340]
+  }
+]
+
+const frequency = [
+  {
+    label: 'Every second',
+    value: 1
+  },
+  {
+    label: 'Every 5 seconds',
+    value: 5
+  },
+  {
+    label: 'Every 10 seconds',
+    value: 10,
+  },
+  {
+    label: 'Every 30 seconds',
+    value: 30
+  }
+]
 
 const MapPage = () => {
 
-    const timer = ms => new Promise(res => setTimeout(res, ms))
+    const [message, setMessage] = useState([19.796963, 45.240372]);
+    const [finish, setFinish] = useState([]);
+    const [selectedPartner, setSelectedPartner] = useState(partners[0]);
+    const [selectedFrequency, setSelectedFrequency] = useState(frequency[0]);
+    const [trigger, setTrigger] = useState(0);
+    const [inputValue, setInputValue] =  useState("")
+    const [inputValueFrq, setInputValueFrq] = useState("")
+    const [clicked, setClicked] = useState([]);
 
-    const generateRoute = () => {
-        let result = [];
+    let onConnected = () => {
+        console.log("Connected!!")
+    }
 
-        for (let point of positions) {
-            result.push(<Marker position={[point[1], point[0]]}></Marker>)
-        }
+    let onDisconected = () => {
+      toast.success("Delivery is on location", {
+      position: toast.POSITION.TOP_CENTER,
+    });
+    }
 
-        return result;
+    let onMessageReceived = (msg) => {
+        console.log(msg)
+        let splitmsg = msg.split(',');
+        console.log(splitmsg);
+        setMessage([parseFloat(splitmsg[1]), parseFloat(splitmsg[0])]);
+    }
+
+    const renderMarker = () => {
+        return <Marker position={message}></Marker>
+    }
+
+    const handleClick = (e) => {
+        setClicked(e.latlng)
+        console.log(e.latlng);
+    }
+
+    const handleStart = async () => {
+      if (!selectedPartner || selectedPartner.value.length === 0) {
+        toast.warning("Please specify delivery location", {
+          position: toast.POSITION.TOP_CENTER
+        });
+        return;
+      }
+      if (!selectedFrequency || selectedFrequency.value === 0) {
+        toast.warning("Please specify frequency", {
+          position: toast.POSITION.TOP_CENTER
+        });
+        return;
+      }
+
+      let dto = { startLocation: [position[1], position[0]], endLocation: [selectedPartner.value[1], selectedPartner.value[0]], frequency: selectedFrequency.value}
+
+      const res = await startDelivery(dto)
+      if (!res || !res.ok) {
+        toast.error("Something went wrong with delivery. Please try again!", { position: toast.POSITION.TOP_CENTER })
+      }
+
+      setFinish(selectedPartner.value);
     }
 
  return (
  <PageLayout class={'map-container'}>
+  <div className={'map-container__map'}>
     <div id="map" className='map'>
-  <MapContainer center={position} zoom={15} scrollWheelZoom={true}>
+  <MapContainer center={position} zoom={15} scrollWheelZoom={true} onClick={handleClick}>
     <TileLayer
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
-    {generateRoute()}
+    <Marker position={[45.240372, 19.796963]} icon={IconBb} />
+    {finish.length !== 0 && <Marker position={finish} icon={HospitalBb}/>}
+    {renderMarker()}
   </MapContainer>
 </div>
+<div>
+      <SockJsClient
+        url={SOCKET_URL}
+        topics={['/socket-publisher']}
+        onConnect={onConnected}
+        onDisconnect={onDisconected}
+        onMessage={msg => onMessageReceived(msg)}
+        debug={false}
+      />
+      <div>{clicked}</div>
+    </div>
+    </div>
+    <div className={'map-container__form'}>
+      <div className={'delivery'}>
+        <div className={'delivery__header'}>
+          Start a new delivery
+        </div>
+        <div className={'delivery__body'}>
+          <div className='delivery__body-autocomplete'>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={partners}
+            renderInput={(params) => <TextField {...params} label="Partners"/>}
+            value = {selectedPartner}
+            onChange={(event, newValue) => {
+              setSelectedPartner(newValue);
+              console.log(selectedPartner);
+            }}
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
+            }}
+          />
+          </div>
+          <div className='delivery__body-autocomplete'>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={frequency}
+            value={selectedFrequency}
+            onChange={(event, newValue) => {
+              setSelectedFrequency(newValue)
+            }}
+            inputValue={inputValueFrq}
+            onInputChange={(event, newInputValue) => {
+              setInputValueFrq(newInputValue)
+            }}
+            renderInput={(params) => <TextField {...params} label="Response time"/>}      
+          />
+          </div>
+          <div className={'delivery__body-button'}>
+            <button className='button-small' onClick={handleStart}>Start</button>
+          </div>
+        </div>
+      </div>
+    </div>
  </PageLayout>
  )
 

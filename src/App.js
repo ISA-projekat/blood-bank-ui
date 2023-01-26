@@ -36,6 +36,7 @@ import SearchBankSlots from "./pages/Appointments/SearchBankSlots/SearchBankSlot
 import UserCalendar from "./pages/Appointments/UserCalendar/UserCalendar";
 import "react-toastify/scss/main.scss";
 import MapPage from "./pages/MapPage/MapPage";
+import AppointmentHistoryPage from "./pages/Appointments/AppointmentHistory/AppointmentHistoryPage";
 
 function App() {
   const context = useContext(AuthContext);
@@ -181,6 +182,7 @@ function App() {
             <Route path="/my-calendar" element={<UserCalendar />} />
             <Route path="/appointments/search" element={<SearchBankSlots />} />
             <Route path="/survey" element={<SurveyPage />} />
+            <Route path="/my-history" element={<AppointmentHistoryPage />} />
           </Route>
 
           <Route

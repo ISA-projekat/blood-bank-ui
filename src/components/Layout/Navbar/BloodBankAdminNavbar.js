@@ -40,7 +40,7 @@ const BloodBankAdminNavbar = (props) => {
     <React.Fragment>
       <div className="landing-navbar__item">
         <NavLink to={getMapLink()} className={"navlink"}>
-          Map
+          Deliveries
         </NavLink>
       </div>
       <div className="landing-navbar__item">
@@ -66,7 +66,7 @@ const BloodBankAdminNavbar = (props) => {
       <div className="landing-navbar__item">
         <button
           className="button bg-orange"
-          style={{ marginTop: "0rem", padding: "0.5rem 1rem" }}
+          style={{ marginTop: "0rem", padding: "1rem 1.5rem" }}
           onClick={props.handleLogout}
         >
           Logout

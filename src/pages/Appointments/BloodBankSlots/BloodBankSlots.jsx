@@ -131,7 +131,7 @@ const BloodBankSlots = () => {
     }
 
     if (!slots || slots.length === 0) {
-        return <div className="message">There are no appointments available...</div>;
+        return <PageLayout class={'slots'}><div className="message">There are no appointments available...</div></PageLayout>;
     }
 
     return (<PageLayout class={'slots'}>

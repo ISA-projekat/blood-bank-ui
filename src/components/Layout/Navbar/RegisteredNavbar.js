@@ -17,6 +17,11 @@ const RegisteredNavbar = (props) => {
         </NavLink>
       </div>
       <div className="landing-navbar__item">
+        <NavLink to="/my-history" className={"navlink"}>
+          My history
+        </NavLink>
+      </div>
+      <div className="landing-navbar__item">
         <NavLink to="/blood-banks" className={"navlink"}>
           Find a donor center
         </NavLink>
@@ -34,7 +39,7 @@ const RegisteredNavbar = (props) => {
       <div className="landing-navbar__item">
         <button
           className="button bg-orange"
-          style={{ marginTop: "0rem", padding: "0.5rem 1rem" }}
+          style={{ marginTop: "0rem", padding: "1rem 1.5rem" }}
           onClick={props.handleLogout}
         >
           Logout
