@@ -211,7 +211,7 @@ const SurveyForm = () => {
         <div className="submit-container-survey">
           <button
             onClick={handleSubmit(onSubmit)}
-            className="orange-button btn-submit"
+            className="button btn-submit bg-orange"
           >
             Submit
           </button>

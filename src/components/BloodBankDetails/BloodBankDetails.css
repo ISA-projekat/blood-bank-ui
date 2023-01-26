@@ -1,12 +1,21 @@
 .blood-bank-details-wrapper {
-  width: 50%;
-  height: 44%;
+  width: 100%;
+  padding: 5rem 2rem;
+  height: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrapper-form {
+  width: 48%;
+  height: 100%;
 }
 
 .blood-bank-details-wrapper form {
-  margin-top: 60px;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -38,8 +47,14 @@
   width: 80px;
 }
 
+.map-div {
+  width: 50%;
+  height: 100%;
+  border: 1px solid #a3a3e8;
+  border-radius: .5rem;
+}
+
 .leaflet-container {
-  margin-top: 30px;
   width: 100%;
-  height: 350px;
+  height: 100%;
 }

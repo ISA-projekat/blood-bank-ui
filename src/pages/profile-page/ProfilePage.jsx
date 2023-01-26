@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
+import PageLayout from "../../components/Layout/MainLayout/PageLayout";
 import { getById } from "../../services/user/UserService";
 
 export default function ProfilePage() {
@@ -15,6 +16,7 @@ export default function ProfilePage() {
     const [email, setEmail] = useState("");
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+    const [penalties, setPenalties] = useState(0);
     const [user, setUser] = useState({});
     
     const [isEditing, setIsEditing] = useState(false);
@@ -30,6 +32,7 @@ export default function ProfilePage() {
         setLastName(response.data.lastName);
         setPhoneNumber(response.data.phoneNumber);
         setOccupation(response.data.occupation);
+        setPenalties(response.data.penalties)
         setEmail(response.data.email);
         setUser(response.data);
     }
@@ -77,7 +80,7 @@ export default function ProfilePage() {
     }
 
     return(
-        <div>
+        <PageLayout>
             <form onSubmit={(e) => onSubmitEdit(e)}>
                 <label>
                     Email:
@@ -114,10 +117,12 @@ export default function ProfilePage() {
                     <input type={"password"} onChange={(e) => {setNewPassword(e.target.value)}} disabled={!isEditing} />
                 </label><br /></>)}
 
+                {user && (<><p>{"You have " + penalties + " penalties this month."}</p></>)}
+
                 <input type={"submit"} value={"Submit"} disabled={!isEditing} />
             </form>
             <button onClick={() => {onEditPress()}}>Edit</button>
 
-        </div>
+        </PageLayout>
     );
 }

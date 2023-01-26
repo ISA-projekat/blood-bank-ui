@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import { createSlot } from '../../../services/appointments/AppointmentService';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
+import PageLayout from '../../../components/Layout/MainLayout/PageLayout';
 
 const NewAppointmentSlotPage = () => {
 
@@ -63,7 +64,7 @@ const NewAppointmentSlotPage = () => {
     }
 
     return (
-            <div className='new-slot-container'>
+            <PageLayout class={'new-slot-container'}>
                 <div className='header'>
                     Create new appointment slot
                 </div>
@@ -86,11 +87,11 @@ const NewAppointmentSlotPage = () => {
                             renderInput={(params) => <TextField {...params} />} />
                          </LocalizationProvider>
                         <div className='item df'>
-                            <button className='orange-button' onClick={handleSubmit}>Submit</button>
+                            <button className='button bg-orange' onClick={handleSubmit}>Submit</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </PageLayout>
     )
 }
 

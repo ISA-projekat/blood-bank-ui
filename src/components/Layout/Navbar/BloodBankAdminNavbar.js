@@ -32,6 +32,10 @@ const BloodBankAdminNavbar = (props) => {
     return "/admin/users";
   };
 
+  const getMapLink = () => {
+    return "/admin/map";
+  };
+
   const getProfileLink = () => {
     return "/user/" + context.user.id;
   };
@@ -43,13 +47,13 @@ const BloodBankAdminNavbar = (props) => {
   return (
     <React.Fragment>
       <div className="landing-navbar__item">
-        <NavLink to={getAppHistoryLink()} className={"navlink"}>
-          Appointment history
+        <NavLink to={getMapLink()} className={"navlink"}>
+          Deliveries
         </NavLink>
       </div>
       <div className="landing-navbar__item">
-        <NavLink to={getAppSlotsLink()} className={"navlink"}>
-          Appointment slots
+        <NavLink to={getAppHistoryLink()} className={"navlink"}>
+          Appointment history
         </NavLink>
       </div>
       <div className="landing-navbar__item">
@@ -74,8 +78,8 @@ const BloodBankAdminNavbar = (props) => {
       </div>
       <div className="landing-navbar__item">
         <button
-          className="orange-button"
-          style={{ marginTop: "0rem", padding: "0.5rem 1rem" }}
+          className="button bg-orange"
+          style={{ marginTop: "0rem", padding: "1rem 1.5rem" }}
           onClick={props.handleLogout}
         >
           Logout

@@ -4,6 +4,7 @@ import * as appointmentService from "../../services/AppointmentService";
 import { useParams } from "react-router";
 import { NavLink } from "react-router-dom";
 import { routes } from "../../constants/routes";
+import PageLayout from "../../components/Layout/MainLayout/PageLayout";
 
 const UsersAppointments = () => {
   const { id } = useParams();
@@ -28,7 +29,7 @@ const UsersAppointments = () => {
   };
 
   return (
-    <div>
+    <PageLayout>
       {appointments.map((a) => {
         return (
           <div>
@@ -44,7 +45,7 @@ const UsersAppointments = () => {
           </div>
         );
       })}
-    </div>
+    </PageLayout>
   );
 };
 

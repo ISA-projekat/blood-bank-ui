@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.10.5",
     "@fontsource/open-sans": "^4.5.13",
     "@fontsource/roboto": "^4.5.8",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@mui/icons-material": "^5.10.14",
     "@mui/material": "^5.10.14",
     "@mui/x-date-pickers": "^5.0.11",
@@ -34,8 +35,10 @@
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
+    "react-stomp": "^5.1.0",
     "react-toastify": "^9.1.1",
     "sass": "^1.55.0",
+    "sockjs": "^0.3.24",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },

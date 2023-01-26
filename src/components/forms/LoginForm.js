@@ -26,7 +26,7 @@ const LoginForm = () => {
     formState: { errors },
   } = form;
 
-  const  onSubmit = (dto) => {
+  const onSubmit = (dto) => {
     loginUser(dto).then((response) => {
       if (!response || !response.ok) {
         setErrorMessage("Invalid credentials");
@@ -36,7 +36,6 @@ const LoginForm = () => {
       // Response vraca token
       //console.log(response.data);
       context.login(response.data);
-
 
       toast.success("Welcome back!", {
         position: "top-center",
@@ -49,9 +48,7 @@ const LoginForm = () => {
         theme: "colored",
       });
       navigate("/");
-
     });
-
   };
 
   return (
@@ -83,7 +80,7 @@ const LoginForm = () => {
         <div className="submit-container-start">
           <Button
             onClick={handleSubmit(onSubmit)}
-            className="orange-button btn-submit"
+            className="button btn-submit bg-orange"
           >
             Submit
           </Button>

@@ -6,11 +6,8 @@ import { registerAdministrator } from "../../services/admin/AdminService";
 import { ToastContainer, toast } from "react-toastify";
 import { Navigate } from "react-router";
 
-
-
 const AdminRegistrationForm = () => {
   const form = useForm();
-  
 
   const {
     data,
@@ -34,7 +31,6 @@ const AdminRegistrationForm = () => {
     toast.success("Welcome to our family", {
       position: toast.POSITION.TOP_RIGHT,
     });
-    
   }
 
   const confirmPasswordRule = {
@@ -208,7 +204,7 @@ const AdminRegistrationForm = () => {
         <div className="submit-container">
           <Button
             onClick={handleSubmit(onSubmit)}
-            className="orange-button btn-submit"
+            className="button btn-submit bg-orange"
           >
             Submit
           </Button>

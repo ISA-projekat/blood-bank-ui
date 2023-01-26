@@ -35,6 +35,8 @@ import FirstLoginPage from "./pages/first-login-redirect-page/FirstLoginPage";
 import SearchBankSlots from "./pages/Appointments/SearchBankSlots/SearchBankSlots";
 import UserCalendar from "./pages/Appointments/UserCalendar/UserCalendar";
 import "react-toastify/scss/main.scss";
+import MapPage from "./pages/MapPage/MapPage";
+import AppointmentHistoryPage from "./pages/Appointments/AppointmentHistory/AppointmentHistoryPage";
 import DonatorsPage from "./components/DonatorsPage/DonatorsPage";
 
 function App() {
@@ -107,6 +109,7 @@ function App() {
         <Route exact path={"/admin/redirect"} element={<FirstLoginPage />} />
         <Route path="/admin/calendar" element={<AdminCalendarView />} />
         <Route path="/new-slot" element={<NewAppointmentSlotPage />} />
+        <Route path="/admin/map" element={<MapPage />} />
         <Route path="/admin/donators/:bloodBankId" element={<DonatorsPage />} />
       </React.Fragment>
     );
@@ -181,6 +184,7 @@ function App() {
             <Route path="/my-calendar" element={<UserCalendar />} />
             <Route path="/appointments/search" element={<SearchBankSlots />} />
             <Route path="/survey" element={<SurveyPage />} />
+            <Route path="/my-history" element={<AppointmentHistoryPage />} />
           </Route>
 
           <Route

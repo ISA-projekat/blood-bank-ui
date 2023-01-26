@@ -10,6 +10,7 @@ import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import { toast } from 'react-toastify';
+import PageLayout from '../../../components/Layout/MainLayout/PageLayout';
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -86,7 +87,7 @@ const UserCalendar = () => {
     }
 
     return (
-        <div className='calendar-container'> 
+        <PageLayout class={'calendar-container'}> 
         <div className='header'>
             My calendar
         </div>
@@ -100,7 +101,7 @@ const UserCalendar = () => {
              onSelectEvent={handleSelected}
                />
         </div>
-        </div>
+        </PageLayout>
     )
 }
 
