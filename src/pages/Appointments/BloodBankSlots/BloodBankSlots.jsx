@@ -194,7 +194,6 @@ const BloodBankSlots = () => {
                         onPageChange={handlePageChange}/>
             </TableContainer>
         </div>
-    </div>
     </PageLayout>)
 
 }
